@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+    const STATUTE = [
+        1 => "Maitre de Jeu",
+        0 => "Joueur"
+    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -80,4 +84,7 @@ class Project
 
         return $this;
     }
+     public function getStatuteType(){
+        return self::STATUTE[$this->statute];
+     }
 }
