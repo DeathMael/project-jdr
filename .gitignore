@@ -50,3 +50,5 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+src/Entity/Event.php-tmp
