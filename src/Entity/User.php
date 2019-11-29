@@ -39,11 +39,6 @@ class User extends BaseUser implements UserInterface
     private $rank;
 
     /**
-     * @ORM\Column(type="json")
-     */
-  /*  private $roles = [];*/
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="users")
      */
     private $event;
@@ -138,7 +133,6 @@ class User extends BaseUser implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -187,5 +181,10 @@ class User extends BaseUser implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getName()
+    {
+        return $this->getFirstName().' '.$this->getLastName();
     }
 }
