@@ -11,8 +11,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
     {% block stylesheets %}
         <style>
-            body {background-color: #212121;
-                color: white;}
             span {color: #46ED58;}
             .lienF {color: #46ED58;
                 text-decoration: none;}
@@ -23,7 +21,7 @@
     {% endblock %}
 </head>
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{{ path('home') }}"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
             aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +38,7 @@
                 <a class="nav-link" href="{{ path('project_index') }}">Projet Odyssey</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">A Propos</a>
+                <a class="nav-link" href="#">L'équipe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Nous rejoindre</a>
@@ -77,8 +75,55 @@
     </div>
 </nav>
 <!--/.Navbar -->
-<body>
-{% block body %}{% endblock %}
+{% block body %}
+
+
+
+
+
+
+
+{% endblock %}
+<!-- Footer -->
+<footer class="page-footer font-small" style="background-color: #212121;">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+        <!-- Grid row-->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 py-5">
+                <div class="mb-5 flex-center">
+
+                    <!-- Facebook -->
+                    <a class="fb-ic" href="https://www.facebook.com/groups/2862017930689916/">
+                        <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <!-- Discord -->
+                    <a class="tw-ic" href="https://discordapp.com/invite/NV2gsg2">
+                        <i class="fab fa-discord fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+
+                </div>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="https://www.wf3.fr/"> WebForce3</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -89,13 +134,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
 {% block javascripts %}{% endblock %}
 
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
-</body>
 </html>
