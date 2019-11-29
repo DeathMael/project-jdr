@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collectif Taliesin{% endblock %}
+{% block stylesheets %}
+    <style>
+        body {background-image: url("")}
+    </style>
+
+{% endblock %}
+{% block body %}
+    <div class="jumbotron jumbotron-fluid elegant-color-dark p-0 mt-4">
+        <div class="container text-center">
+            <h1>Le Collectif Taliesin</h1>
+            <p class="lead">
+                Le Collectif Taliesin est une association loi 1901 visant à créer des expériences narratives et ludiques et à les mettre en scène dans le cadre événementiel et/ou dématérialisé.
+                Fondé en 2019 et composé uniquement de membres bénévoles, le Collectif Taliesin est un collectif d’auteurs et de créateurs unis dans un même but:
+                créer des jeux hors du commun dans un but non lucratif, afin de repousser toujours plus loin les limites du genre.
+            </p>
+
+            <img src="{{ asset('media/Logohome(1).jpg') }}">
+            <p class="lead">
+                L’association est menée par une direction collégiale composée de cinq membres.
+                Nous travaillons à l’heure actuelle sur un projet principal, un univers de jeu de rôle collaboratif au nom de code <span class="lienF">“Projet Odyssey”</span>,
+                et avons pour ambition de nous en servir pour développer des outils de design narratif et technique qui nous serviront pour les projets subséquents.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body elegant-color white-text rounded-bottom">
+            <!-- Title -->
+            <h4 class="card-title">ROMAIN - Lead Narrative Designer</h4>
+            <!-- Text -->
+            <hr class="hr-light">
+            <p class="card-text white-text mb-4">Romain est issu d’une formation académique en littérature et en sciences du jeu, contexte dans lequel il a - entre autres - travaillé sur le jeu de rôle et sur la littérature fantastique.<br>
+                Grand joueur (en termes quantitatifs plutôt que qualitatifs) de jeux vidéos, de jeux de société et de jeux de rôle,
+                il passe la plupart de son temps libre à travailler sur des projets de jeux où il explore les manières de créer un investissement émotionnel chez les joueurs.
+                Son expérience en tant que MJ couvre dix années et de nombreux jeux/univers différents, le plus souvent en créant ses propres scénarios et contenus.
+                Il est le principal instigateur du Projet Odyssey, né d’un désir mégalomaniaque (si si) de réunir autour d’une même table (dématérialisée qui plus est)
+                des dizaines de joueurs et MJ différents, en les faisant cohabiter dans la même temporalité et interagir les uns avec les autres.
+
+        </div>
+
+    </div>
+{% endblock %}
