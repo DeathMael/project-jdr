@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
-
+{% block title %}Projet Odyssey{% endblock %}
+{% block stylesheets %}
+    <style>
+        body{}
+    </style>
+{% endblock %}
 {% block body %}
-    <h1>Project index</h1>
+    <h1>Projet Odyssey</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Statute</th>
-                <th>actions</th>
+                <th>Statut</th>
+                <th>Édition</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +23,17 @@
                 <td>{{ project.id }}</td>
                 <td>{{ project.statute }}</td>
                 <td>
-                    <a href="{{ path('project_show', {'id': project.id}) }}">show</a>
-                    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                    <a class="btn btn-dark" href="{{ path('project_delete', {'id': project.id}) }}">Supprimer</a>
+                    <a  class="btn btn-dark" href="{{ path('project_edit', {'id': project.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('project_new') }}">Create new</a>
+    <a href="{{ path('project_new') }}">Choisir un rôle</a>
 {% endblock %}
