@@ -10,18 +10,22 @@
         h1{color: #46ED58;}
         .jumbotron{background: rgba(33,33,33,0.9);
                   border-radius: 25px;}
-
+        .card {background:rgba(33,33,33,0.9);
+            border-radius: 25px;}
+        h5{color: #46ED58;}
+        .btn-light{border-radius: 10px;}
         .lienF{color: #46ED58;
         text-decoration: none;}
         .lienF:hover{
             color: #46ED58 ;
         }
+        img{border-radius: 40px;}
     </style>
 
 {% endblock %}
 {% block body %}
     <div class="container">
-    <div class="jumbotron jumbotron-fluid p-0 mt-5">
+    <div class="jumbotron jumbotron-fluid p-0 mt-5 pb-3">
         <div class="container text-center">
             <h1 class="pt-2">Le Collectif Taliesin</h1>
             <p class="lead text-white mb-4">
@@ -38,7 +42,27 @@
         </div>
 
     </div>
-        
+        <div class="row  text-center mb-5">
+            <div class="col-sm-6 mb-3 mb-md-0">
+                <div class="card elegant-color-dark">
+                    <div class="card-body ">
+                        <h5 class="card-title">Nous Rejoindre</h5>
+                        <p class="card-text text-white">Si vous souhaitez rejoindre l'association, cliquez sur le lien en-dessous !</p>
+                        <a href="#!" class="btn btn-light">Nous Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card elegant-color-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">Projet Odyssey</h5>
+                        <p class="card-text text-white">Pour en savoir plus sur notre projet Odyssey, cliquez sur le lien ci-dessous !</p>
+                        <a href="#!" class="btn btn-light">Le Projet Odyssey</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
