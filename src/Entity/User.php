@@ -187,4 +187,31 @@ class User extends BaseUser implements UserInterface
     {
         return $this->getFirstName().' '.$this->getLastName();
     }
+
+    public function getFormatedRank()
+    {
+        switch ($this->getRank())
+        {
+            case 0 : return 'Orbis Tertius';
+                break;
+            case 1 : return 'Orbis Secondus';
+                break;
+            case 2 : return 'Orbis Primus';
+                break;
+            default : return 'Non renseigné';
+        }
+    }
+
+    public function getFormatedRoles()
+    {
+        if($this->getRank()==["ROLE_USER"])
+            return 'Utilisateur';
+        else
+            return 'Administrateur';
+    }
+
+    public function getFormatedEvent()
+    {
+        return $this->getEvent()->getTitle().' : '.date_format ( $this->getEvent()->getDate() , 'd/m/Y');
+    }
 }
