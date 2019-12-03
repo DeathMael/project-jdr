@@ -2,6 +2,7 @@ easy_admin:
   entities:
     Orbis_Primus:
       class: App\Entity\User
+      controller: App\Controller\UserBackendController
       label: 'Orbis Primus'
       new:
         title: 'Créer un nouvel %%entity_label%%'

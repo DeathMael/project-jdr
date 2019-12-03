@@ -54,7 +54,10 @@ class ProjectBackendController extends EasyAdminController
 
     public function updateEntity($entity)
     {
-        $users = $entity->getUsers();
+        if (method_exists($entity, 'getUsers')) {
+            $users = $entity->getUsers();
+        }
+        else $users=[];
         foreach ($users as $key => $value) {
             if (method_exists($value, 'setProject')) {
                 $value->setProject($entity);

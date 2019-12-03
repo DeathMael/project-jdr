@@ -54,6 +54,10 @@ class EventBackendController extends EasyAdminController
 
     public function updateEntity($entity)
     {
+        if (method_exists($entity, 'getUsers')) {
+            $users = $entity->getUsers();
+        }
+        else $users=[];
         $users = $entity->getUsers();
         foreach ($users as $key => $value) {
             if (method_exists($value, 'setEvent')) {
