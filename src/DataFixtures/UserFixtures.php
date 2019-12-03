@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
 
-        /*$user->setUsername('admin');
+        $user->setUsername('admin');
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
@@ -29,9 +29,10 @@ class UserFixtures extends Fixture
         $user->setEmail("test@email.com");
         $user->setFirstname("Yanis");
         $user->setLastname("Vuillecard");
-        $user->setRank(1);*/
+        $user->setRank(1);
+        $user->setEnabled(1);
 
-        $user->setUsername('user');
+        /*$user->setUsername('user');
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
@@ -40,7 +41,7 @@ class UserFixtures extends Fixture
         $user->setEmail("test2@email.com");
         $user->setFirstname("Jean");
         $user->setLastname("Croipasméxieu");
-        $user->setRank(0);
+        $user->setRank(0);*/
         $manager->persist($user);
 
         $manager->flush();

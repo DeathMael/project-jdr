@@ -20,14 +20,14 @@ class ContactController extends AbstractController
             $contactFormData = $form->getData();
 
             $message =(new \Swift_Message('Nouvelle demande d\'inscription'))
-                ->setFrom($contactFormData['fromEmail'])
+                ->setFrom($contactFormData['Email'])
                 ->setTo('testeur21800@gmail.com')
                 ->setBody(
-                    $contactFormData['message'],
+                    $contactFormData['Message'],
         'text/plain'
                 );
         $mailer->send($message);
-        $this->addFlash('success', 'Votre demande d\'inscription a bien été envoyé ! un admin va créer votre compte');
+        $this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
 
         return $this->redirectToRoute('contact');
         }
