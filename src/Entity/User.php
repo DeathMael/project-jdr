@@ -39,11 +39,6 @@ class User extends BaseUser implements UserInterface
     private $rank;
 
     /**
-     * @ORM\Column(type="json")
-     */
-  /*  private $roles = [];*/
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="users")
      */
     private $event;
@@ -138,7 +133,6 @@ class User extends BaseUser implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -187,5 +181,37 @@ class User extends BaseUser implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getName()
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    public function getFormatedRank()
+    {
+        switch ($this->getRank())
+        {
+            case 0 : return 'Orbis Tertius';
+                break;
+            case 1 : return 'Orbis Secondus';
+                break;
+            case 2 : return 'Orbis Primus';
+                break;
+            default : return 'Non renseigné';
+        }
+    }
+
+    public function getFormatedRoles()
+    {
+        if($this->getRank()==["ROLE_USER"])
+            return 'Utilisateur';
+        else
+            return 'Administrateur';
+    }
+
+    public function getFormatedEvent()
+    {
+        return $this->getEvent()->getTitle().' : '.date_format ( $this->getEvent()->getDate() , 'd/m/Y');
     }
 }
