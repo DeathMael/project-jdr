@@ -1,0 +1,110 @@
+easy_admin:
+  entities:
+    Orbis_Tertius:
+      class: App\Entity\User
+      label: 'Orbis Tertius'
+      new:
+        title: 'Créer un nouvel %%entity_label%%'
+        fields:
+          - { type: 'group', columns: 6, label: 'Informations personnelles', icon: 'user' }
+          - { property: 'firstname', label: 'Prénom'}
+          - { property: 'lastname', label: 'Nom'}
+          - { property: 'username', label: 'Nom d''utilisateur'}
+          - { property: 'email', type: 'email', label: 'Email'}
+          - { type: 'group', columns: 5, label: 'Informations Complémentaires', icon: 'code' }
+          - property: 'event'
+            label: 'Inscris à l''évènement'
+            type: 'entity'
+            type_options:
+              class: App\Entity\Event
+          - property: 'project'
+            label: 'Participe au projet'
+            type: 'entity'
+            type_options:
+              class: App\Entity\Project
+          - property: 'rank'
+            type: 'choice'
+            type_options:
+              expanded: true
+              data: '0'
+              choices: { 'Orbis Tertius': '0'}
+          - property: 'roles'
+            type: 'choice'
+            type_options:
+              expanded: true
+              multiple: true
+              data: ["ROLE_USER"]
+              choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' }
+          - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
+          - { type: 'group', columns: 11, label: 'Informations confidentielles', icon: 'user-lock' }
+          - property: 'plainPassword'
+            type: 'repeated'
+            type_options:
+              type: Symfony\Component\Form\Extension\Core\Type\PasswordType
+              required: true
+              first_options: { label: 'Mot de passe' }
+              second_options: { label: 'Confirmer le mot de passe' }
+              invalid_message: fos_user.password.mismatch
+      edit:
+        title: 'Modifier l''%%entity_label%% n°%%entity_id%%'
+        fields:
+          - { type: 'group', columns: 6, label: 'Informations personnelles', icon: 'user' }
+          - { property: 'firstname', label: 'Prénom'}
+          - { property: 'lastname', label: 'Nom'}
+          - { property: 'username', label: 'Nom d''utilisateur'}
+          - { property: 'email', type: 'email', label: 'Email'}
+          - { type: 'group', columns: 5, label: 'Informations Complémentaires', icon: 'code' }
+          - property: 'event'
+            label: 'Inscris à l''évènement'
+            type: 'entity'
+            type_options:
+              class: App\Entity\Event
+          - property: 'project'
+            label: 'Participe au projet'
+            type: 'entity'
+            type_options:
+              class: App\Entity\Project
+          - property: 'rank'
+            type: 'choice'
+            type_options:
+              expanded: true
+              choices: { 'Orbis Primus': '2', 'Orbis Secondus': '1', 'Orbis Tertius': '0' }
+          - property: 'roles'
+            type: 'choice'
+            type_options:
+              expanded: true
+              multiple: true
+              data: ["ROLE_ADMIN"]
+              choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' }
+          - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
+      search:
+        sort: ['username', 'DESC']
+      list:
+        actions:
+          show: { name: show, type: method, label: 'Plus', icon: eye }
+          edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
+          delete: { name: delete, type: method, label: 'Supprimer', icon: trash }
+          new: { name: new, type: method, label: 'Ajouter', icon: user-plus }
+        dql_filter: 'entity.rank = 0'
+        fields:
+          - { property: 'enabled', label: 'Active' }
+          - { property: 'username', label: 'Utilisateur' }
+          - { property: 'email', label: 'Contact' }
+          - { property: 'formatedroles', label: 'Rôle'}
+          - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
+          - { property: 'formatedevent', label: 'Évènement'}
+          - { property: 'formatedproject', label: 'Projet'}
+        title: 'Liste des %%entity_label%%'
+        sort: ['username', 'DESC']
+      show:
+        title: '%%entity_label%% n°(#%%entity_id%%)'
+        fields:
+          - { property: 'firstname', label: 'Prénom'}
+          - { property: 'lastname', label: 'Nom'}
+          - { property: 'username', label: 'Nom d''utilisateur'}
+          - { property: 'email', type: 'email', label: 'Email'}
+          - { property: 'formatedroles', label: 'Rôle'}
+          - { property: 'formatedrank', label: 'Rang' }
+          - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
+          - { property: 'event', label: 'Inscris à l''évènement'}
+          - { property: 'enabled', label: 'Active', help: 'L''utilisateur est autorisé à se connecter'}

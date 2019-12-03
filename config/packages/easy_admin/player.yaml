@@ -1,0 +1,57 @@
+easy_admin:
+  entities:
+    Joueur:
+      help: 'Attention : Pour supprimer un projet, vous devez retirer les utilisateurs y participants'
+      class: App\Entity\Project
+      controller: App\Controller\ProjectBackendController
+      label: 'Projet'
+      new:
+        title: 'Créer un nouveau %%entity_label%%'
+        fields:
+          - { type: 'group', columns: 6, label: 'Type de Joueur', icon: 'info' }
+          - property: 'statute'
+            type: 'choice'
+            label: 'Fonction'
+            type_options:
+              expanded: true
+              data: '0'
+              choices: { 'Joueur': '0' }
+      edit:
+        title: 'Modifier le %%entity_label%% n°%%entity_id%%'
+        fields:
+          - { type: 'group', columns: 6, label: 'Type de Joueur', icon: 'info' }
+          - property: 'statute'
+            type: 'choice'
+            label: 'Fonction'
+            type_options:
+              expanded: true
+              data: '0'
+              choices: { 'Joueur': '0', 'Maître du Jeu': '1' }
+      search:
+        sort: ['id', 'DESC']
+      list:
+        dql_filter: 'entity.statute = 0'
+        actions:
+          show: { name: show, type: method, label: 'Plus', icon: eye }
+          edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
+          delete: { name: delete, type: method, label: 'Supprimer', icon: trash }
+          new: { name: new, type: method, label: 'Ajouter', icon: plus }
+        fields:
+          - { property: 'id', label: 'Numéro' }
+          - { property: 'statutetype', label: 'Fonction' }
+          - { property: 'users', label: 'Utilisateurs' }
+        title: 'Liste des %%entity_label%%'
+        sort: ['id', 'DESC']
+      show:
+        title: '%%entity_label%% n°(#%%entity_id%%)'
+        fields:
+          - property: 'users'
+            label: 'Utilisateurs'
+          - property: 'statute'
+            label: 'Fonction'
+      form:
+        fields:
+          - { type: 'group', columns: 6, label: 'Joueurs', icon: 'users' }
+          - property: 'users'
+            label: 'Participants'
+            type: 'easyadmin_autocomplete'

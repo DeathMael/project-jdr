@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use EasyCorp\Bundle\EasyAdminBundle\Exception\EntityRemoveException;
 
-class EventBackendController extends EasyAdminController
+class ProjectBackendController extends EasyAdminController
 {
     protected function newAction()
     {
@@ -56,8 +56,8 @@ class EventBackendController extends EasyAdminController
     {
         $users = $entity->getUsers();
         foreach ($users as $key => $value) {
-            if (method_exists($value, 'setEvent')) {
-                $value->setEvent($entity);
+            if (method_exists($value, 'setProject')) {
+                $value->setProject($entity);
             }
             parent::updateEntity($value);
         }
@@ -83,7 +83,7 @@ class EventBackendController extends EasyAdminController
             if (method_exists($entity, 'getUsers'))
                 if ($entity->getUsers()[0]!=null)
                 {
-                    $this->addFlash('error', 'Des utilisateurs sont enregistrés sur cet évènement !');
+                    $this->addFlash('error', 'Des utilisateurs sont enregistrés sur ce Projets !');
                     return $this->redirectToReferrer();
                 }
             try {

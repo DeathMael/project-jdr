@@ -87,4 +87,9 @@ class Project
      public function getStatuteType(){
         return self::STATUTE[$this->statute];
      }
+
+    public function __toString()
+    {
+        return 'Projet n°'.$this->getId().' : '.$this->getStatuteType();
+    }
 }
