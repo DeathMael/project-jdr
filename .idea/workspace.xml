@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/event.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EventBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EventBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Event.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-    </list>
+    <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +172,7 @@
       <workItem from="1575016199326" duration="6760000" />
       <workItem from="1575023862316" duration="1246000" />
       <workItem from="1575273782093" duration="27976000" />
-      <workItem from="1575360042948" duration="17217000" />
+      <workItem from="1575360042948" duration="17884000" />
     </task>
     <servers />
   </component>
