@@ -69,7 +69,7 @@ class Booking {
 	 * @return Google_Client the authorized client object
 	 */
 	public function getClient() {
-		$client = new Google_Client();
+		$client = new \Google_Client();
 		$client->setApplicationName('Google Calendar API PHP Quickstart');
 		$client->setScopes(Google_Service_Calendar::CALENDAR);
 		$client->setAuthConfig('credentials.json');
