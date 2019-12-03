@@ -37,12 +37,24 @@ class BookingController extends AbstractController {
 	 */
 	public function new (Request $request):Response {
 		$booking = new Booking();
-		$form    = $this->createForm(BookingType::class , $booking);
+
+		$form = $this->createForm(BookingType::class , $booking);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($booking);
+			// Get the API client and construct the service object.
+			$client  = getClient();
+			$service = new Google_Service_Calendar($client);
+			// Print the next 10 events on the user's calendar.
+			$calendarId = 'primary';
+			$optParams  = array(
+				'maxResults'   => 10,
+				'orderBy'      => 'startTime',
+				'singleEvents' => true,
+				'timeMin'      => date('c'),
+			);
 			$entityManager->flush();
 
 			return $this->redirectToRoute('booking_calendar');

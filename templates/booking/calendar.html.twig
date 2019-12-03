@@ -17,12 +17,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
-
+    <script src="fullcalendar/core/main.js"></script>
+    <script src="fullcalendar/google-calendar/main.js"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
             var calendarEl = document.getElementById('calendar-holder');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
+                height: 750,
                 defaultView: 'dayGridMonth',
                 editable: true,
                 eventSources: [
@@ -36,13 +39,19 @@
                             // alert("There was an error while fetching FullCalendar!");
                         },
                     },
+
                 ],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
-                plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'googleCalendarPlugin' ], // https://fullcalendar.io/docs/plugin-index
+                googleCalendarApiKey: 'AIzaSyCs6eOxw1giEc4J5PHwWJbF0dR_YlWgUX8',
+                events: {
+                googleCalendarId: '5n7hqradvrj6so45ghg28ifpd8@group.calendar.google.com'
+                },
+
                 timeZone: 'UTC',
             });
             calendar.render();
