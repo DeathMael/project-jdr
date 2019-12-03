@@ -204,7 +204,7 @@ class User extends BaseUser implements UserInterface
 
     public function getFormatedRoles()
     {
-        if($this->getRank()==["ROLE_USER"])
+        if($this->getRoles()==["ROLE_USER"])
             return 'Utilisateur';
         else
             return 'Administrateur';
@@ -212,6 +212,19 @@ class User extends BaseUser implements UserInterface
 
     public function getFormatedEvent()
     {
-        return $this->getEvent()->getTitle().' : '.date_format ( $this->getEvent()->getDate() , 'd/m/Y');
+        if($this->getEvent()!=null)
+        {
+            return $this->getEvent()->getTitle().' : '.date_format ( $this->getEvent()->getDate() , 'd/m/Y');
+        }
+        else return null;
+    }
+
+    public function getFormatedProject()
+    {
+        if($this->getProject()!=null)
+        {
+            return 'Projet n°'.$this->getProject()->getId().' : '.$this->getProject()->getStatuteType();
+        }
+        else return null;
     }
 }

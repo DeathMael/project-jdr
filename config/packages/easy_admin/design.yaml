@@ -1,0 +1,21 @@
+easy_admin:
+  design:
+    assets:
+      favicon:
+        path: '/bundles/easyadmin/images/projet/Logo Taliesin.webp'
+        mime_type: 'image/webp'
+    menu:
+      - { label: 'Site Web', route: 'home', icon: home }
+      - label: 'Utilisateurs'
+        icon: 'users'
+        children:
+          - { label: 'Orbis Primus', icon: 'certificate', entity: 'Orbis_Primus' }
+          - { label: 'Orbis Secondus', icon: 'asterisk', entity: 'Orbis_Secondus'}
+          - { label: 'Orbis Tertius', icon: 'times', entity: 'Orbis_Tertius'}
+      - label: 'Autres'
+      - { label: 'Évènements', icon: 'calendar-alt', entity: 'Event' }
+      - label: 'Projets'
+        icon: 'project-diagram'
+        children:
+          - { label: 'Maître du Jeu', icon: 'crown', entity: 'Maitre_du_jeu' }
+          - { label: 'Joueur', icon: 'gamepad', entity: 'Joueur'}
