@@ -32,6 +32,8 @@ easy_admin:
       list:
         dql_filter: 'entity.statute = 1'
         actions:
+          toggle: { name: toggle, type: method, label: 'basculer en Joueur', icon: sliders-h }
+          clear: { name: clear, type: method, label: 'Vider', icon: user-times }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
           delete: { name: delete, type: method, label: 'Supprimer', icon: trash }
@@ -40,14 +42,14 @@ easy_admin:
           - { property: 'id', label: 'Numéro' }
           - { property: 'statutetype', label: 'Fonction' }
           - { property: 'users', label: 'Utilisateurs' }
-        title: 'Liste des %%entity_label%%'
+        title: 'Liste des %%entity_label%%s'
         sort: ['id', 'DESC']
       show:
         title: '%%entity_label%% n°(#%%entity_id%%)'
         fields:
           - property: 'users'
             label: 'Utilisateurs'
-          - property: 'statute'
+          - property: 'statutetype'
             label: 'Fonction'
       form:
         fields:
