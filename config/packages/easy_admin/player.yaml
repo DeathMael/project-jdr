@@ -32,6 +32,7 @@ easy_admin:
       list:
         dql_filter: 'entity.statute = 0'
         actions:
+          toggle: { name: toggle, type: method, label: 'basculer en Maître de Jeu', icon: sliders-h }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
           delete: { name: delete, type: method, label: 'Supprimer', icon: trash }

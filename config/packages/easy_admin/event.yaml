@@ -13,6 +13,7 @@ easy_admin:
         sort: ['date', 'DESC']
       list:
         actions:
+          clear: { name: clear, type: method, label: 'Vider', icon: user-times }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
           delete: { name: delete, type: method, label: 'Supprimer', icon: trash }

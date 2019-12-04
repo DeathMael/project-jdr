@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
@@ -43,12 +44,11 @@ class UserBackendController extends EasyAdminController
             $entity = $easyadmin['item'];
 
             $this->dispatch(EasyAdminEvents::PRE_REMOVE, ['entity' => $entity]);
-            if (method_exists($entity, 'getFormatedRoles'))
-                if ($entity->getFormatedRoles()=="Administrateur")
-                {
-                    $this->addFlash('error', 'Impossible de supprimer un Administateur !');
-                    return $this->redirectToReferrer();
-                }
+            if ($this->getUser()==$entity)
+            {
+                $this->addFlash('error', 'Impossible de supprimer l\'utilisateur courant !');
+                return $this->redirectToReferrer();
+            }
             try {
                 $this->executeDynamicMethod('remove<EntityName>Entity', [$entity, $form]);
             } catch (ForeignKeyConstraintViolationException $e) {
@@ -61,5 +61,31 @@ class UserBackendController extends EasyAdminController
         $this->dispatch(EasyAdminEvents::POST_DELETE);
 
         return $this->redirectToReferrer();
+    }
+
+    public function promoteAction()
+    {
+        $id = $this->request->query->get('id');
+        $entity = $this->em->getRepository(User::class)->find($id);
+        $entity->setRank($entity->getRank()+1);
+        $this->em->flush();
+
+        return $this->redirectToRoute('easyadmin', array(
+            'action' => 'list',
+            'entity' => $this->request->query->get('entity'),
+        ));
+    }
+
+    public function demoteAction()
+    {
+        $id = $this->request->query->get('id');
+        $entity = $this->em->getRepository(User::class)->find($id);
+        $entity->setRank($entity->getRank()-1);
+        $this->em->flush();
+
+        return $this->redirectToRoute('easyadmin', array(
+            'action' => 'list',
+            'entity' => $this->request->query->get('entity'),
+        ));
     }
 }

@@ -3,10 +3,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
+use App\Entity\User;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use EasyCorp\Bundle\EasyAdminBundle\Exception\EntityRemoveException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventBackendController extends EasyAdminController
 {
@@ -52,18 +56,79 @@ class EventBackendController extends EasyAdminController
         return $this->executeDynamicMethod('render<EntityName>Template', ['new', $this->entity['templates']['new'], $parameters]);
     }
 
+    /**
+     * The method that is executed when the user performs a 'edit' action on an entity.
+     *
+     * @return Response|RedirectResponse
+     *
+     * @throws \RuntimeException
+     */
+    protected function editAction()
+    {
+        $this->dispatch(EasyAdminEvents::PRE_EDIT);
+
+        $id = $this->request->query->get('id');
+        $easyadmin = $this->request->attributes->get('easyadmin');
+        $entity = $easyadmin['item'];
+
+        if ($this->request->isXmlHttpRequest() && $property = $this->request->query->get('property')) {
+            $newValue = 'true' === mb_strtolower($this->request->query->get('newValue'));
+            $fieldsMetadata = $this->entity['list']['fields'];
+
+            if (!isset($fieldsMetadata[$property]) || 'toggle' !== $fieldsMetadata[$property]['dataType']) {
+                throw new \RuntimeException(sprintf('The type of the "%s" property is not "toggle".', $property));
+            }
+
+            $this->updateEntityProperty($entity, $property, $newValue);
+
+            // cast to integer instead of string to avoid sending empty responses for 'false'
+            return new Response((int)$newValue);
+        }
+
+        $fields = $this->entity['edit']['fields'];
+
+        $editForm = $this->executeDynamicMethod('create<EntityName>EditForm', [$entity, $fields]);
+        $deleteForm = $this->createDeleteForm($this->entity['name'], $id);
+
+        $editForm->handleRequest($this->request);
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->processUploadedFiles($editForm);
+
+            $this->dispatch(EasyAdminEvents::PRE_UPDATE, ['entity' => $entity]);
+            $this->executeDynamicMethod('update<EntityName>Entity', [$entity, $editForm]);
+            $this->dispatch(EasyAdminEvents::POST_UPDATE, ['entity' => $entity]);
+
+            return $this->redirectToReferrer();
+        }
+
+        $this->dispatch(EasyAdminEvents::POST_EDIT);
+
+        $parameters = [
+            'form' => $editForm->createView(),
+            'entity_fields' => $fields,
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView(),
+        ];
+
+        if ($entity instanceof Event)
+        {
+            foreach ($entity->getUsers() as $key => $value) {
+                $entity->removeUser($value);
+                parent::updateEntity($value);
+            }
+        }
+
+        return $this->executeDynamicMethod('render<EntityName>Template', ['edit', $this->entity['templates']['edit'], $parameters]);
+    }
+
     public function updateEntity($entity)
     {
-        if (method_exists($entity, 'getUsers')) {
-            $users = $entity->getUsers();
-        }
-        else $users=[];
-        $users = $entity->getUsers();
-        foreach ($users as $key => $value) {
-            if (method_exists($value, 'setEvent')) {
+        if ($entity instanceof Event)
+        {
+            foreach ($entity->getUsers() as $key => $value) {
                 $value->setEvent($entity);
+                parent::updateEntity($value);
             }
-            parent::updateEntity($value);
         }
     }
 
@@ -84,7 +149,7 @@ class EventBackendController extends EasyAdminController
             $entity = $easyadmin['item'];
 
             $this->dispatch(EasyAdminEvents::PRE_REMOVE, ['entity' => $entity]);
-            if (method_exists($entity, 'getUsers'))
+            if ($entity instanceof Event)
                 if ($entity->getUsers()[0]!=null)
                 {
                     $this->addFlash('error', 'Des utilisateurs sont enregistrés sur cet évènement !');
@@ -103,4 +168,22 @@ class EventBackendController extends EasyAdminController
 
         return $this->redirectToReferrer();
     }
+
+    public function clearAction()
+    {
+        $id = $this->request->query->get('id');
+        $entity = $this->em->getRepository(Event::class)->find($id);
+        foreach ($entity->getUsers() as $key=>$user)
+        {
+            $entity->removeUser($user);
+        }
+        $this->em->flush();
+
+        return $this->redirectToRoute('easyadmin', array(
+            'action' => 'list',
+            'entity' => $this->request->query->get('entity'),
+        ));
+
+    }
+
 }

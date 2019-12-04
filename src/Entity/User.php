@@ -204,10 +204,16 @@ class User extends BaseUser implements UserInterface
 
     public function getFormatedRoles()
     {
-        if($this->getRoles()==["ROLE_USER"])
-            return 'Utilisateur';
-        else
-            return 'Administrateur';
+        switch ($this->getRoles())
+        {
+            case ["[ROLE_USER]"]: return 'Utilisateur';
+            break;
+            case ["ROLE_ADMIN"]: return 'Administrateur';
+            break;
+            case ["[ROLE_USER]","ROLE_ADMIN"]: return 'Admin/User';
+            break;
+            default: return null;
+        }
     }
 
     public function getFormatedEvent()

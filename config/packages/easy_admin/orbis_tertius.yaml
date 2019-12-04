@@ -35,7 +35,7 @@ easy_admin:
               expanded: true
               multiple: true
               data: ["ROLE_USER"]
-              choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' }
+              choices: { 'Utilisateur': '[ROLE_USER]', 'Administrateur': 'ROLE_ADMIN' }
           - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
           - { type: 'group', columns: 11, label: 'Informations confidentielles', icon: 'user-lock' }
           - property: 'plainPassword'
@@ -75,13 +75,13 @@ easy_admin:
             type_options:
               expanded: true
               multiple: true
-              data: ["ROLE_ADMIN"]
-              choices: { 'Utilisateur': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' }
+              choices: { 'Utilisateur': '[ROLE_USER]', 'Administrateur': 'ROLE_ADMIN' }
           - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
       search:
         sort: ['username', 'DESC']
       list:
         actions:
+          promote: { name: promote, type: method, label: 'Promouvoir', icon: award }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
           delete: { name: delete, type: method, label: 'Supprimer', icon: trash }
