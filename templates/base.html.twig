@@ -47,14 +47,16 @@
                 <a class="nav-link" href="{{ path('contact') }}">Nous rejoindre</a>
             </li>
             <li class="nav-item">
+                {% if app.user %}
                 <a class="nav-link" href="#">Planning</a>
+                {% endif %}
             </li>
 
 
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item ">
-                <a href="https://www.facebook.com/groups/2862017930689916/" class="nav-link waves-effect waves-light animated shake">
+                <a href="https://www.facebook.com/groups/2862017930689916/" class="nav-link waves-effect waves-light">
                     <i class="fab fa-facebook-f"></i>
                 </a>
             </li>
@@ -70,10 +72,14 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                      aria-labelledby="navbarDropdownMenuLink-55">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="" href="{{ path('easyadmin') }}">Administration</a>
+                    {% if app.user.roles is defined and app.user.roles[0]=='ROLE_ADMIN' %}
+                    <a class="dropdown-item" href="{{ path('easyadmin') }}">Administration</a>
+                    {% endif %}
                     {% if app.user %}
+                        <a href="#" class="dropdown-item">Modifier mon profil</a>
                         <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnection</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{{ path('app_login') }}">Se Connecter</a>
                     {% endif %}
                 </div>
             </li>
