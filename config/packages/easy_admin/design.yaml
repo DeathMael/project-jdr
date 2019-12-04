@@ -25,4 +25,3 @@ easy_admin:
       - { label: 'Projet Oddyssey', route: 'home', icon: 'flask' }
       - { label: 'L''équipe', route: 'home', icon: 'user-friends' }
       - { label: 'Planning', route: 'home', icon: 'calendar-check' }
-      - { label: 'Profil', icon: 'address-card', route: 'home' }

@@ -27,7 +27,7 @@ easy_admin:
         title: 'Liste des %%entity_label%%'
         sort: ['date', 'DESC']
       show:
-        title: '%%entity_label%% n°(#%%entity_id%%)'
+        title: '%%entity_label%% n°%%entity_id%%'
         fields:
           - { property: 'title', label: 'Titre', type: 'text'}
           - { property: 'description', label: 'Description'}

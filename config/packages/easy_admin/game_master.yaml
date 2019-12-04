@@ -45,7 +45,7 @@ easy_admin:
         title: 'Liste des %%entity_label%%s'
         sort: ['id', 'DESC']
       show:
-        title: '%%entity_label%% n°(#%%entity_id%%)'
+        title: '%%entity_label%% n°%%entity_id%%'
         fields:
           - property: 'users'
             label: 'Utilisateurs'

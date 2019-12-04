@@ -3,15 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/event.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/event.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bundles/easyadmin/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/bundles/easyadmin/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bundles/EasyAdminBundle/default/layout.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +182,7 @@
       <workItem from="1575023862316" duration="1246000" />
       <workItem from="1575273782093" duration="27976000" />
       <workItem from="1575360042948" duration="26128000" />
-      <workItem from="1575446903415" duration="26039000" />
+      <workItem from="1575446903415" duration="26641000" />
     </task>
     <servers />
   </component>
