@@ -80,6 +80,8 @@ easy_admin:
       search:
         sort: ['username', 'DESC']
       list:
+        batch_actions:
+          severalPromote: { name: severalPromote, label: 'Promouvoir' }
         actions:
           promote: { name: promote, type: method, label: 'Promouvoir', icon: award }
           show: { name: show, type: method, label: 'Plus', icon: eye }

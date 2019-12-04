@@ -79,6 +79,8 @@ easy_admin:
       search:
         sort: ['username', 'DESC']
       list:
+        batch_actions:
+          severalDemote: { name: severalDemote, label: 'Rétrograder' }
         actions:
           demote: { name: demote, type: method, label: 'Rétrograder', icon: angle-double-down }
           show: { name: show, type: method, label: 'Plus', icon: eye }
