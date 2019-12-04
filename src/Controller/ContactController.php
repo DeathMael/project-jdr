@@ -28,7 +28,7 @@ class ContactController extends AbstractController
         'text/plain'
                 );
         $mailer->send($message);
-        $this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
+        //$this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
 
         return $this->redirectToRoute('contact');
         }

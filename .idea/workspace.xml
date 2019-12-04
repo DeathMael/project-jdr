@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/bundles/easyadmin/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/bundles/EasyAdminBundle/default/layout.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/_delete_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/show.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project/_delete_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/project/show.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/event.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/event.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/fos_user.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/fos_user.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EventBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EventBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContactController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
