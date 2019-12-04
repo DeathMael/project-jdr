@@ -19,11 +19,12 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
 
-            $message =(new \Swift_Message('Nouvelle demande d\'inscription'))
+            $message =(new \Swift_Message('Nouvelle demande d\'inscription de '. $contactFormData['Nom']. ' ' . $contactFormData['Prenom']))
                 ->setFrom($contactFormData['Email'])
                 ->setTo('testeur21800@gmail.com')
                 ->setBody(
-                    $contactFormData['Message'],
+                    $contactFormData['Message'] . '
+            mail de l\'expéditeur: ' . $contactFormData['Email'],
         'text/plain'
                 );
         $mailer->send($message);
