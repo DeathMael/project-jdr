@@ -19,20 +19,20 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $contactFormData = $form->getData();
 
-            $message =(new \Swift_Message('Nouvelle demande d\'inscription de '. $contactFormData['Nom']. ' ' . $contactFormData['Prenom']))
+            $message = (new \Swift_Message('Nouvelle demande d\'inscription de ' . $contactFormData['Nom'] . ' ' . $contactFormData['Prenom']))
                 ->setFrom($contactFormData['Email'])
                 ->setTo('testeur21800@gmail.com')
                 ->setBody(
                     $contactFormData['Message'] . '
             mail de l\'expéditeur: ' . $contactFormData['Email'],
-        'text/plain'
+                    'text/plain'
                 );
-        $mailer->send($message);
-        //$this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
+            $mailer->send($message);
+            //$this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
 
-        return $this->redirectToRoute('contact');
+            return $this->redirectToRoute('contact');
         }
-        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
+        if ($form->isSubmitted() && $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
 
             $this->addFlash(
                 'error',
@@ -44,5 +44,22 @@ class ContactController extends AbstractController
         ]);
     }
 
+    function captchaverify($recaptcha)
+    {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret" => "6LdrFsYUAAAAAIKeg4RP81eVg5BBkIm48oXCBEY4", "response" => $recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
 
+        return $data->success;
+
+
+    }
 }
