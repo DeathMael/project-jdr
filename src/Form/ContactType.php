@@ -23,10 +23,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'nom_class' => TextType::class,
-            'prenom_class' => TextType::class,
-            'email_class' => EmailType::class,
-            'message_class' => TextareaType::class,
+
         ]);
     }
 }
