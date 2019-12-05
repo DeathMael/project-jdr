@@ -7,4 +7,4 @@ easy_admin:
   list:
     collapse_actions: true
     batch_actions:
-      delete: { name: delete, label: 'Supprimer', icon: trash }
+      delete: { name: delete, label: 'Supprime', icon: trash }
