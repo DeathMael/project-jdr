@@ -1,21 +1,47 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
 
+        <style>
+            body {background-image: url({{ asset('media/home.jpg') }});
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+            }
+            .card{background:rgba(33,33,33,0.7);
+                border-radius: 25px;}
+        </style>
+
+{% endblock %}
 {% block title %} Nous rejoindre {% endblock %}
 
 {% block body %}
 
-    <h2>Nous rejoindre</h2>
+    <div class="container mt-5">
+    <div class="row">
+    <!-- Grid row -->
+        <div class="col-md-6 offset-md-3">
+            <div class="card text-white">
 
-    <div class="container">
-        {{ form_start(email_form) }}
-        {{ form_widget(email_form) }}
+                <div class="card-body mx-4">
 
-        <div class="form-group row">
-            <div class="col-sm-8">
-            <div class="g-recaptcha" data-sitekey="6LdrFsYUAAAAAFTVAS1To0nqzrgHZEKKVW0rbQ2L"></div>
-                <input type="submit" value="envoyer" class="btn btn-success"/>
+                    <!--Header-->
+                    <div class="text-center">
+                        <h3 class="text-white mb-5"><strong>Nous rejoindre</strong></h3>
+                    </div>
+                        {{ form_start(email_form) }}
+                        {{ form_widget(email_form) }}
+
+                    <div class="text-center mb-3 col-4">
+                        <div class="g-recaptcha" data-sitekey="6LdrFsYUAAAAAFTVAS1To0nqzrgHZEKKVW0rbQ2L"></div>
+                        <button class="btn btn-light">{{ button| default('Enregistrer') }}</button>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
         {{ form_end(email_form) }}
+
     </div>
+
 {% endblock %}
