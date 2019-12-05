@@ -38,15 +38,16 @@ class User extends BaseUser implements UserInterface
      */
     private $rank;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="users")
-     */
-    private $event;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="users")
      */
     private $project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Booking", inversedBy="users")
+     */
+    private $booking;
 
     public function getId(): ?int
     {
@@ -136,17 +137,6 @@ class User extends BaseUser implements UserInterface
         return $this;
     }
 
-    public function getEvent(): ?Event
-    {
-        return $this->event;
-    }
-
-    public function setEvent(?Event $event): self
-    {
-        $this->event = $event;
-
-        return $this;
-    }
 
     public function getProject(): ?Project
     {
@@ -216,15 +206,6 @@ class User extends BaseUser implements UserInterface
         }
     }
 
-    public function getFormatedEvent()
-    {
-        if($this->getEvent()!=null)
-        {
-            return $this->getEvent()->getTitle().' : '.date_format ( $this->getEvent()->getDate() , 'd/m/Y');
-        }
-        else return null;
-    }
-
     public function getFormatedProject()
     {
         if($this->getProject()!=null)
@@ -232,5 +213,17 @@ class User extends BaseUser implements UserInterface
             return 'Projet n°'.$this->getProject()->getId().' : '.$this->getProject()->getStatuteType();
         }
         else return null;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): self
+    {
+        $this->booking = $booking;
+
+        return $this;
     }
 }
