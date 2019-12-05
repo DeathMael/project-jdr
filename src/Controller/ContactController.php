@@ -16,7 +16,7 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() && && $this->captchaverify($request->get('g-recaptcha-response'))) {
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $contactFormData = $form->getData();
 
             $message =(new \Swift_Message('Nouvelle demande d\'inscription de '. $contactFormData['Nom']. ' ' . $contactFormData['Prenom']))
