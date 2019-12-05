@@ -159,10 +159,6 @@
     },
     "guzzlehttp/guzzle": {
         "version": "6.4.1"
-        "version": "v0.8"
-    },
-    "guzzlehttp/guzzle": {
-        "version": "6.2.0"
     },
     "guzzlehttp/promises": {
         "version": "v1.3.1"
