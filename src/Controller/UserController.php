@@ -86,7 +86,7 @@ class UserController extends AbstractController
             }
             if ($user->getId()!=$this->getUser()->getId()) {
                 $this->addFlash('warning', 'Vous n\'êtes pas autorisé à accéder à cette page !');
-                return $this->redirectToRoute('home');
+                return $this->redirect($this->generateUrl('user_edit', ['id' => $this->getUser()->getId()]));
             }
             else {
                 return $this->render('user/edit.html.twig', [
