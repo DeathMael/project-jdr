@@ -79,6 +79,10 @@ dump($client);*/
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+		    //$datetime=new \DateTime();
+		   // $datetime->format('Y-m-d H:i:s');
+		   // $booking->setCreatedAt($datetime);
+            $booking ->setCreatedAt();
 			$entityManager = $this->getDoctrine()->getManager();
 
 			$entityManager->persist($booking);
@@ -86,9 +90,9 @@ dump($client);*/
 			$calendarId = 'primary';
 			$event = new Google_Service_Calendar_Event([
 				'summary' => $booking->getTitle(),
-				'start' => ['dateTime' => date_format($booking->getBeginAt(), "Y-m-d\TH:i:s+01:00"),
+				'start' => ['dateTime' => date_format($booking->getBeginAt(), "Y-m-d\TH:i:s"),
 					'timeZone' => 'Europe/Paris'],
-				'end' => ['dateTime' => date_format($booking->getEndAt(), "Y-m-d\TH:i:s+01:00"),
+				'end' => ['dateTime' => date_format($booking->getEndAt(), "Y-m-d\TH:i:s"),
 					'timeZone' => 'Europe/Paris'],
 			]);
 			$results = $service->events->insert($calendarId, $event);
