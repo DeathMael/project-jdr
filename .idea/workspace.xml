@@ -2,52 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/.github/ISSUE_TEMPLATE/bug_report.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/ARCHITECTURE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/app.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/appengine-https.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/config.php.dist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/examples.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/google0afd8760fd68f119.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/recaptcha-content-security-policy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/recaptcha-v2-checkbox-explicit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/recaptcha-v2-checkbox.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/recaptcha-v2-invisible.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/recaptcha-v3-request-scores.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/recaptcha-v3-verify.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/examples/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/phpunit.xml.dist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/ReCaptcha.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestMethod.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestMethod/Curl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestMethod/CurlPost.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestMethod/Post.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestMethod/Socket.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestMethod/SocketPost.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/RequestParameters.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/ReCaptcha/Response.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/src/autoload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/tests/ReCaptcha/ReCaptchaTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/tests/ReCaptcha/RequestMethod/CurlPostTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/tests/ReCaptcha/RequestMethod/PostTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/tests/ReCaptcha/RequestMethod/SocketPostTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/tests/ReCaptcha/RequestParametersTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recaptcha-master/tests/ReCaptcha/ResponseTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-jdr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project-jdr.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bundles/easyadmin/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/project/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/project/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/project/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -236,7 +194,7 @@
       <workItem from="1575360042948" duration="26128000" />
       <workItem from="1575446903415" duration="26641000" />
       <workItem from="1575533058145" duration="2258000" />
-      <workItem from="1575541520926" duration="2336000" />
+      <workItem from="1575541520926" duration="4955000" />
     </task>
     <servers />
   </component>

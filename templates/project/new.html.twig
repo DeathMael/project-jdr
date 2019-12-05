@@ -1,12 +1,12 @@
 {% extends '@!EasyAdmin/default/layout.html.twig' %}
-{% block title %}New Project{% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-{% endblock%}
+
 {% block body %}
-    <h1>Create new Project</h1>
 
-    {{ include('project/_form.html.twig') }}
+        <div class="card">
+            <div class="card-body">
+    <h1 class="card-title">Choisir un nouveau rôle</h1>
 
-    <a href="{{ path('project_index') }}">back to list</a>
+    <div class="card-text">{{ include('project/_form.html.twig') }}</div>
+        </div>
+        </div>
 {% endblock %}
