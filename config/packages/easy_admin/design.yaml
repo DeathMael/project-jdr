@@ -4,7 +4,7 @@ easy_admin:
       css:
         - 'bundles/easyadmin/custom.css'
       favicon:
-        path: '/bundles/easyadmin/images/projet/Logo Taliesin.webp'
+        path: '/media/Logo Taliesin.webp'
         mime_type: 'image/webp'
     menu:
       - label: 'Entités'
@@ -21,6 +21,6 @@ easy_admin:
           - { label: 'Joueur', icon: 'gamepad', entity: 'Joueur'}
       - label: 'Site Web'
       - { label: 'Accueil', route: 'home', icon: 'home' }
-      - { label: 'Projet Oddyssey', route: 'home', icon: 'flask' }
-      - { label: 'L''équipe', route: 'home', icon: 'user-friends' }
-      - { label: 'Planning', route: 'home', icon: 'calendar-check' }
+      - { label: 'Projet Oddyssey', route: 'project_index', icon: 'flask' }
+      - { label: 'L''équipe', route: 'equipe_index', icon: 'user-friends' }
+      - { label: 'Planning', route: 'booking_calendar', icon: 'calendar-check' }

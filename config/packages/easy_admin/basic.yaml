@@ -1,5 +1,5 @@
 easy_admin:
-  site_name: '<img src="/bundles/easyadmin/images/projet/Logo Taliesin.webp" /> Collectif Taliesin'
+  site_name: '<img src="/media/Logo Taliesin.webp" /> Collectif Taliesin'
   formats:
     datetime: 'd/m/Y H:i:s'
     date: 'd/m/Y'

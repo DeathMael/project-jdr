@@ -13,11 +13,6 @@ easy_admin:
           - { property: 'username', label: 'Nom d''utilisateur'}
           - { property: 'email', type: 'email', label: 'Email'}
           - { type: 'group', columns: 5, label: 'Informations Complémentaires', icon: 'code' }
-          - property: 'event'
-            label: 'Inscris à l''évènement'
-            type: 'entity'
-            type_options:
-              class: App\Entity\Event
           - property: 'project'
             label: 'Participe au projet'
             type: 'entity'
@@ -55,11 +50,6 @@ easy_admin:
           - { property: 'username', label: 'Nom d''utilisateur'}
           - { property: 'email', type: 'email', label: 'Email'}
           - { type: 'group', columns: 5, label: 'Informations Complémentaires', icon: 'code' }
-          - property: 'event'
-            label: 'Inscris à l''évènement'
-            type: 'entity'
-            type_options:
-              class: App\Entity\Event
           - property: 'project'
             label: 'Participe au projet'
             type: 'entity'
@@ -97,7 +87,6 @@ easy_admin:
           - { property: 'email', label: 'Contact' }
           - { property: 'formatedroles', label: 'Rôle' }
           - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
-          - { property: 'formatedevent', label: 'Évènement'}
           - { property: 'formatedproject', label: 'Projet'}
         title: 'Liste des %%entity_label%%'
         sort: ['username', 'DESC']
@@ -111,5 +100,4 @@ easy_admin:
           - { property: 'formatedroles', label: 'Rôle'}
           - { property: 'formatedrank', label: 'Rang' }
           - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
-          - { property: 'event', label: 'Inscris à l''évènement'}
           - { property: 'enabled', label: 'Active', help: 'L''utilisateur est autorisé à se connecter'}
