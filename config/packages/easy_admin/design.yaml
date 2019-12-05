@@ -14,7 +14,6 @@ easy_admin:
           - { label: 'Orbis Primus', icon: 'certificate', entity: 'Orbis_Primus' }
           - { label: 'Orbis Secondus', icon: 'asterisk', entity: 'Orbis_Secondus'}
           - { label: 'Orbis Tertius', icon: 'times', entity: 'Orbis_Tertius'}
-      - { label: 'Évènements', icon: 'calendar-alt', entity: 'Event' }
       - label: 'Projets'
         icon: 'project-diagram'
         children:
