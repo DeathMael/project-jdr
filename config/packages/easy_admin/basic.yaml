@@ -6,4 +6,5 @@ easy_admin:
     time: 'H:i'
   list:
     collapse_actions: true
-    batch_actions: ['delete']
+    batch_actions:
+      delete: { name: delete, label: 'Supprimer', icon: trash }

@@ -81,8 +81,8 @@ easy_admin:
         sort: ['username', 'DESC']
       list:
         batch_actions:
-          severalPromote: { name: severalPromote, label: 'Promouvoir' }
-          severalDemote: { name: severalDemote, label: 'Rétrograder' }
+          severalPromote: { name: severalPromote, label: 'Promouvoir', icon: award }
+          severalDemote: { name: severalDemote, label: 'Rétrograder', icon: angle-double-down }
         actions:
           promote: { name: promote, type: method, label: 'Promouvoir', icon: award }
           demote: { name: demote, type: method, label: 'Rétrograder', icon: angle-double-down }

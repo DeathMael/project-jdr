@@ -186,4 +186,18 @@ class EventBackendController extends EasyAdminController
 
     }
 
+    public function SeveralClearBatchAction(array $ids)
+    {
+        $class = $this->entity['class'];
+        $em = $this->getDoctrine()->getManagerForClass($class);
+        foreach ($ids as $id) {
+            $event = $em->find($class, $id);
+            foreach ($event->getUsers() as $key=>$user)
+            {
+                $event->removeUser($user);
+            }
+        }
+        $this->em->flush();
+    }
+
 }

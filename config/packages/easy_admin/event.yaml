@@ -12,6 +12,8 @@ easy_admin:
       search:
         sort: ['date', 'DESC']
       list:
+        batch_actions:
+          severalClear: { name: severalClear, label: 'Vider', icon: user-times }
         actions:
           clear: { name: clear, type: method, label: 'Vider', icon: user-times }
           show: { name: show, type: method, label: 'Plus', icon: eye }
