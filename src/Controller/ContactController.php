@@ -16,7 +16,7 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $contactFormData = $form->getData();
 
             $message =(new \Swift_Message('Nouvelle demande d\'inscription de '. $contactFormData['Nom']. ' ' . $contactFormData['Prenom']))
@@ -32,8 +32,17 @@ class ContactController extends AbstractController
 
         return $this->redirectToRoute('contact');
         }
+        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
+
+            $this->addFlash(
+                'error',
+                'Captcha Requis'
+            );
+        }
         return $this->render('contact/index.html.twig', [
             'email_form' => $form->createView(),
         ]);
     }
+
+
 }
