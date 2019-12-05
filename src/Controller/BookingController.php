@@ -39,6 +39,42 @@ class BookingController extends AbstractController {
 	}
 
 	/**
+	 * @Route("/sync", name="booking_sync")
+	 */
+	public function sync(BookingRepository $bookingRepository) {
+		$service = CalendarService::service();
+		$results = $service->events->listEvents('primary');
+		$events = $results->getItems();
+
+		foreach ($events as $event) {
+			if ($bookingRepository->findOneByGoogleid($event->getId()) == NULL) {
+
+				$booking = new Booking();
+
+				$booking->setCreatedAt();
+
+				$booking->setTitle($event->getSummary());
+				$booking->setDescription($event->getDescription());
+				$booking->setBeginAt(
+					new \DateTime($event->getStart()->getDateTime(), new \DateTimeZone('Europe/Paris')));
+				$booking->setEndAt(
+					new \DateTime($event->getEnd()->getDateTime(), new \DateTimeZone('Europe/Paris')));
+				$booking->setGoogleid($event->getId());
+
+				$entityManager = $this->getDoctrine()->getManager();
+
+				$entityManager->persist($booking);
+
+				$entityManager->flush();
+
+			};
+
+		};
+
+		return $this->redirectToRoute('booking_calendar');
+	}
+
+	/**
 	 * @Route("/calendar", name="booking_calendar", methods={"GET"})
 	 */
 	public function calendar(): Response{
@@ -79,23 +115,25 @@ dump($client);*/
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-		    //$datetime=new \DateTime();
-		   // $datetime->format('Y-m-d H:i:s');
-		   // $booking->setCreatedAt($datetime);
-            $booking ->setCreatedAt();
+			//$datetime=new \DateTime();
+			// $datetime->format('Y-m-d H:i:s');
+			// $booking->setCreatedAt($datetime);
+			$booking->setCreatedAt();
 			$entityManager = $this->getDoctrine()->getManager();
 
 			$entityManager->persist($booking);
 
 			$calendarId = 'primary';
-			$event = new Google_Service_Calendar_Event([
+			$event = new \Google_Service_Calendar_Event([
 				'summary' => $booking->getTitle(),
+				'description' => $booking->getDescription(),
 				'start' => ['dateTime' => date_format($booking->getBeginAt(), "Y-m-d\TH:i:s"),
 					'timeZone' => 'Europe/Paris'],
 				'end' => ['dateTime' => date_format($booking->getEndAt(), "Y-m-d\TH:i:s"),
 					'timeZone' => 'Europe/Paris'],
 			]);
 			$results = $service->events->insert($calendarId, $event);
+			$booking->setGoogleid($results->getId());
 			$entityManager->flush();
 
 			return $this->redirectToRoute('booking_calendar');
@@ -121,12 +159,28 @@ dump($client);*/
 	 */
 	public function edit(Request $request, Booking $booking): Response{
 		$form = $this->createForm(BookingType::class, $booking);
+
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$service = CalendarService::service();
+
+			$event = $service->events->get('primary', $booking->getGoogleid());
+
+			$event = new \Google_Service_Calendar_Event([
+				'summary' => $booking->getTitle(),
+				'description' => $booking->getDescription(),
+				'start' => ['dateTime' => date_format($booking->getBeginAt(), "Y-m-d\TH:i:s"),
+					'timeZone' => 'Europe/Paris'],
+				'end' => ['dateTime' => date_format($booking->getEndAt(), "Y-m-d\TH:i:s"),
+					'timeZone' => 'Europe/Paris'],
+			]);
+
+			$updatedEvent = $service->events->update('primary', $booking->getGoogleid(), $event);
+
 			$this->getDoctrine()->getManager()->flush();
 
-			return $this->redirectToRoute('booking_index');
+			return $this->redirectToRoute('booking_calendar');
 		}
 
 		return $this->render('booking/edit.html.twig', [
@@ -141,10 +195,13 @@ dump($client);*/
 	public function delete(Request $request, Booking $booking): Response {
 		if ($this->isCsrfTokenValid('delete' . $booking->getId(), $request->request->get('_token'))) {
 			$entityManager = $this->getDoctrine()->getManager();
+			$service = CalendarService::service();
+			$service->events->delete('primary', $booking->getGoogleid());
 			$entityManager->remove($booking);
 			$entityManager->flush();
 		}
 
-		return $this->redirectToRoute('booking_index');
+		return $this->redirectToRoute('booking_calendar');
 	}
+
 }
