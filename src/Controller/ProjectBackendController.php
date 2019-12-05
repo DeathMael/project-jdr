@@ -201,4 +201,18 @@ class ProjectBackendController extends EasyAdminController
         ));
 
     }
+
+    public function SeveralClearBatchAction(array $ids)
+    {
+        $class = $this->entity['class'];
+        $em = $this->getDoctrine()->getManagerForClass($class);
+        foreach ($ids as $id) {
+            $project = $em->find($class, $id);
+            foreach ($project->getUsers() as $key=>$user)
+            {
+                $project->removeUser($user);
+            }
+        }
+        $this->em->flush();
+    }
 }

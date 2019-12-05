@@ -137,7 +137,6 @@ class User extends BaseUser implements UserInterface
         return $this;
     }
 
-
     public function getProject(): ?Project
     {
         return $this->project;

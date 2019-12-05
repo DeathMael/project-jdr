@@ -4,3 +4,7 @@ easy_admin:
     datetime: 'd/m/Y H:i:s'
     date: 'd/m/Y'
     time: 'H:i'
+  list:
+    collapse_actions: true
+    batch_actions:
+      delete: { name: delete, label: 'Supprime', icon: trash }

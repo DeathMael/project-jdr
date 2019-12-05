@@ -85,9 +85,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('user_index'));
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $this->getCredentials($request)['username']]);
+        if ($user->getFormatedRoles()=='Administrateur') {
+            return new RedirectResponse($this->urlGenerator->generate('easyadmin'));
+        }
+        else return new RedirectResponse($this->urlGenerator->generate('home'));
 
     }
 

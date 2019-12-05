@@ -31,6 +31,8 @@ easy_admin:
         sort: ['id', 'DESC']
       list:
         dql_filter: 'entity.statute = 1'
+        batch_actions:
+          severalClear: { name: severalClear, label: 'Vider', icon: user-times }
         actions:
           toggle: { name: toggle, type: method, label: 'basculer en Joueur', icon: sliders-h }
           clear: { name: clear, type: method, label: 'Vider', icon: user-times }
@@ -45,7 +47,7 @@ easy_admin:
         title: 'Liste des %%entity_label%%s'
         sort: ['id', 'DESC']
       show:
-        title: '%%entity_label%% n°(#%%entity_id%%)'
+        title: '%%entity_label%% n°%%entity_id%%'
         fields:
           - property: 'users'
             label: 'Utilisateurs'

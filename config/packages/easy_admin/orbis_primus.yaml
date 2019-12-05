@@ -79,6 +79,8 @@ easy_admin:
       search:
         sort: ['username', 'DESC']
       list:
+        batch_actions:
+          severalDemote: { name: severalDemote, label: 'Rétrograder', icon: angle-double-down }
         actions:
           demote: { name: demote, type: method, label: 'Rétrograder', icon: angle-double-down }
           show: { name: show, type: method, label: 'Plus', icon: eye }
@@ -97,7 +99,7 @@ easy_admin:
         title: 'Liste des %%entity_label%%'
         sort: ['username', 'DESC']
       show:
-        title: '%%entity_label%% n°(#%%entity_id%%)'
+        title: '%%entity_label%% n°%%entity_id%%'
         fields:
           - { property: 'firstname', label: 'Prénom'}
           - { property: 'lastname', label: 'Nom'}

@@ -88,4 +88,32 @@ class UserBackendController extends EasyAdminController
             'entity' => $this->request->query->get('entity'),
         ));
     }
+
+    public function SeveralpromoteBatchAction(array $ids)
+    {
+        $class = $this->entity['class'];
+        $em = $this->getDoctrine()->getManagerForClass($class);
+
+        foreach ($ids as $id) {
+            $user = $em->find($class, $id);
+            $user->setRank($user->getRank()+1);
+        }
+
+        $this->em->flush();
+
+    }
+
+    public function SeveraldemoteBatchAction(array $ids)
+    {
+        $class = $this->entity['class'];
+        $em = $this->getDoctrine()->getManagerForClass($class);
+
+        foreach ($ids as $id) {
+            $user = $em->find($class, $id);
+            $user->setRank($user->getRank()-1);
+        }
+
+        $this->em->flush();
+
+    }
 }
