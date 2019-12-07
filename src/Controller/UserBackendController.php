@@ -7,14 +7,76 @@ use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use EasyCorp\Bundle\EasyAdminBundle\Exception\EntityRemoveException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserBackendController extends EasyAdminController
 {
-    public function createNewUserEntity()
+    /**
+     * The method that is executed when the user performs a 'new' action on an entity.
+     *
+     * @return Response|RedirectResponse
+     */
+    protected function newAction()
     {
-        return $this->get('fos_user.user_manager')->createUser();
-    }
+        $this->dispatch(EasyAdminEvents::PRE_NEW);
 
+        $entity = $this->executeDynamicMethod('createNew<EntityName>Entity');
+
+        $easyadmin = $this->request->attributes->get('easyadmin');
+        $easyadmin['item'] = $entity;
+        $this->request->attributes->set('easyadmin', $easyadmin);
+
+        $fields = $this->entity['new']['fields'];
+
+        $newForm = $this->executeDynamicMethod('create<EntityName>NewForm', [$entity, $fields]);
+
+        $newForm->handleRequest($this->request);
+        if ($newForm->isSubmitted() && $newForm->isValid()) {
+            $this->processUploadedFiles($newForm);
+
+            $class = $this->entity['class'];
+            $em = $this->getDoctrine()->getManagerForClass($class);
+            $ids=$this->getDoctrine()->getRepository(User::class)->findAll();
+            $error=0;
+
+            foreach ($ids as $id) {
+                $user = $em->find($class, $id);
+                if ($entity->getUsername()==$user->getUsername())
+                {
+                    $this->addFlash('error', 'L\'utilisateur '.$user->getUsername().' existe déjà !');
+                    $error++;
+                }
+                if ($entity->getEmail()==$user->getEmail())
+                {
+                    $this->addFlash('error', 'L\'utilisateur '.$user->getUsername().' possède déjà l\'email '.$user->getEmail().' !');
+                    $error++;
+                }
+                if ($error>0)
+                    return $this->redirectToReferrer();
+            }
+
+            $this->dispatch(EasyAdminEvents::PRE_PERSIST, ['entity' => $entity]);
+            $this->executeDynamicMethod('persist<EntityName>Entity', [$entity, $newForm]);
+            $this->dispatch(EasyAdminEvents::POST_PERSIST, ['entity' => $entity]);
+
+            return $this->redirectToReferrer();
+        }
+
+        $this->dispatch(EasyAdminEvents::POST_NEW, [
+            'entity_fields' => $fields,
+            'form' => $newForm,
+            'entity' => $entity,
+        ]);
+
+        $parameters = [
+            'form' => $newForm->createView(),
+            'entity_fields' => $fields,
+            'entity' => $entity,
+        ];
+
+        return $this->executeDynamicMethod('render<EntityName>Template', ['new', $this->entity['templates']['new'], $parameters]);
+    }
 
     public function persistUserEntity($user)
     {
