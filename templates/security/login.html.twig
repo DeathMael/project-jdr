@@ -33,6 +33,9 @@
         form{
             background-color: #6c757d;
         }
+        #link{
+            color: #7db9da;
+        }
     </style>
 {% endblock %}
 
@@ -50,6 +53,7 @@
         <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-4" required autofocus>
         <label for="inputPassword">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" required>
+        <p class="mt-4"><a id="link" href="{{ path('fos_user_resetting_request') }}" >Mot de passe oublié</a></p>
 
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}"
@@ -69,7 +73,7 @@
                 </label>
             </div>
         #}
-        <div class="text-center mt-5">
+        <div class="text-center mt-4">
             <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
         </div>
     </form>
