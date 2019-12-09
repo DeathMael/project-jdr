@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/media/platon.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vivify.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/BookingType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BookingType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/booking/calendar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/booking/calendar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/equipe/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/equipe/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/project/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +198,7 @@
       <workItem from="1575446903415" duration="26641000" />
       <workItem from="1575533058145" duration="2258000" />
       <workItem from="1575541520926" duration="14936000" />
-      <workItem from="1575620153094" duration="9649000" />
+      <workItem from="1575620153094" duration="17650000" />
     </task>
     <servers />
   </component>
