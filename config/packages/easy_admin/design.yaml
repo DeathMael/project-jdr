@@ -7,7 +7,11 @@ easy_admin:
         path: '/media/Logo Taliesin.webp'
         mime_type: 'image/webp'
     menu:
-      - label: 'Entités'
+      - label: 'Non Filtré'
+      - { label: 'Tous les utilisateurs', icon: 'users', entity: 'Users' }
+      - { label: 'Tous les projets', icon: 'project-diagram', entity: 'Projects' }
+      - { label: 'Tous les évènements', icon: 'calendar-alt', entity: 'Booking' }
+      - label: 'Filtré'
       - label: 'Utilisateurs'
         icon: 'users'
         children:

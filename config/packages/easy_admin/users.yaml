@@ -1,9 +1,9 @@
 easy_admin:
   entities:
-    Orbis_Primus:
+    Users:
       class: App\Entity\User
       controller: App\Controller\UserBackendController
-      label: 'Orbis Primus'
+      label: 'Utilisateur'
       new:
         title: 'Créer un nouvel %%entity_label%%'
         fields:
@@ -22,8 +22,7 @@ easy_admin:
             type: 'choice'
             type_options:
               expanded: true
-              data: '2'
-              choices: { 'Orbis Primus': '2'}
+              choices: { 'Orbis Primus': '2', 'Orbis Secondus': '1', 'Orbis Tertius': '0' }
           - property: 'roles'
             type: 'choice'
             type_options:
@@ -69,25 +68,28 @@ easy_admin:
       search:
         sort: ['username', 'ASC']
       list:
-        help: 'Utilisation des filtres : Les rôles sont [ ROLE_ADMIN = Administrateur | ROLE_USER = Utilisateur ]'
+        help: 'Utilisation des filtres : [RANG] Orbis Tertius = 0, Orbis Secondus = 1, Orbis Primus = 2 | [ROLES] ROLE_ADMIN, ROLE_USER'
         filters:
           - { property: 'enabled', label: 'Active' }
           - { property: 'username', label: 'Pseudo' }
           - { property: 'email', label: 'Email' }
+          - { property: 'rank', label: 'Rang', type: 'integer' }
           - { property: 'roles', label: 'Rôle', type: 'array'}
         batch_actions:
+          severalPromote: { name: severalPromote, label: 'Promouvoir', icon: award }
           severalDemote: { name: severalDemote, label: 'Rétrograder', icon: angle-double-down }
         actions:
+          promote: { name: promote, type: method, label: 'Promouvoir', icon: award }
           demote: { name: demote, type: method, label: 'Rétrograder', icon: angle-double-down }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
           delete: { name: delete, type: method, label: 'Supprimer', icon: trash }
           new: { name: new, type: method, label: 'Ajouter', icon: user-plus }
-        dql_filter: 'entity.rank = 2'
         fields:
           - { property: 'enabled', label: 'Active' }
           - { property: 'username', label: 'Utilisateur' }
           - { property: 'email', label: 'Contact' }
+          - { property: 'formatedrank', label: 'Rang' }
           - { property: 'formatedroles', label: 'Rôle'}
           - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
           - { property: 'formatedproject', label: 'Projet'}

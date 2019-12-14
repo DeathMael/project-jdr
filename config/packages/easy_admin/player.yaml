@@ -28,13 +28,18 @@ easy_admin:
               data: '0'
               choices: { 'Joueur': '0', 'Maître du Jeu': '1' }
       search:
-        sort: ['id', 'DESC']
+        sort: ['id', 'ASC']
       list:
         dql_filter: 'entity.statute = 0'
+        filters:
+          - { property: 'id', label: 'Numéro' }
+          - { property: 'users', label: 'Utilisateurs' }
         batch_actions:
           severalClear: { name: severalClear, label: 'Vider', icon: user-times }
+          severalToggle: { name: severalToggle, label: 'Basculer en Maître de Jeu', icon: sliders-h }
         actions:
           toggle: { name: toggle, type: method, label: 'basculer en Maître de Jeu', icon: sliders-h }
+          clear: { name: clear, type: method, label: 'Vider', icon: user-times }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
           delete: { name: delete, type: method, label: 'Supprimer', icon: trash }
@@ -44,7 +49,7 @@ easy_admin:
           - { property: 'statutetype', label: 'Fonction' }
           - { property: 'users', label: 'Utilisateurs' }
         title: 'Liste des %%entity_label%%s'
-        sort: ['id', 'DESC']
+        sort: ['id', 'ASC']
       show:
         title: '%%entity_label%% n°%%entity_id%%'
         fields:
@@ -57,4 +62,3 @@ easy_admin:
           - { type: 'group', columns: 6, label: 'Joueurs', icon: 'users' }
           - property: 'users'
             label: 'Participants'
-            type: 'easyadmin_autocomplete'

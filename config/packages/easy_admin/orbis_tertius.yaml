@@ -68,8 +68,14 @@ easy_admin:
               choices: { 'Utilisateur': '[ROLE_USER]', 'Administrateur': 'ROLE_ADMIN' }
           - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
       search:
-        sort: ['username', 'DESC']
+        sort: ['username', 'ASC']
       list:
+        help: 'Utilisation des filtres : Les rôles sont [ ROLE_ADMIN = Administrateur | ROLE_USER = Utilisateur ]'
+        filters:
+          - { property: 'enabled', label: 'Active' }
+          - { property: 'username', label: 'Pseudo' }
+          - { property: 'email', label: 'Email' }
+          - { property: 'roles', label: 'Rôle', type: 'array'}
         batch_actions:
           severalPromote: { name: severalPromote, label: 'Promouvoir', icon: angle-double-down }
         actions:
@@ -87,7 +93,7 @@ easy_admin:
           - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
           - { property: 'formatedproject', label: 'Projet'}
         title: 'Liste des %%entity_label%%'
-        sort: ['username', 'DESC']
+        sort: ['username', 'ASC']
       show:
         title: '%%entity_label%% n°%%entity_id%%'
         fields:

@@ -1,6 +1,6 @@
 easy_admin:
   entities:
-    Maitre_du_jeu:
+    Projects:
       help: 'Attention : Pour supprimer un projet, vous devez retirer les utilisateurs y participants'
       class: App\Entity\Project
       controller: App\Controller\ProjectBackendController
@@ -14,8 +14,7 @@ easy_admin:
             label: 'Fonction'
             type_options:
               expanded: true
-              data: '1'
-              choices: { 'Maître du Jeu': '1' }
+              choices: { 'Maître du Jeu': '1', 'Joueur': '0' }
       edit:
         title: 'Modifier le %%entity_label%% n°%%entity_id%%'
         fields:
@@ -30,15 +29,16 @@ easy_admin:
       search:
         sort: ['id', 'ASC']
       list:
-        dql_filter: 'entity.statute = 1'
+        help: 'Utilisation des filtres : [FONCTIONS] 0 = Joueur | 1 = Maître de Jeu'
         filters:
           - { property: 'id', label: 'Numéro' }
+          - { property: 'statute', label: 'Fonctions' }
           - { property: 'users', label: 'Utilisateurs' }
         batch_actions:
           severalClear: { name: severalClear, label: 'Vider', icon: user-times }
-          severalToggle: { name: severalToggle, label: 'Basculer en Joueur', icon: sliders-h }
+          severalToggle: { name: severalToggle, label: 'Basculer', icon: sliders-h }
         actions:
-          toggle: { name: toggle, type: method, label: 'basculer en Joueur', icon: sliders-h }
+          toggle: { name: toggle, type: method, label: 'basculer', icon: sliders-h }
           clear: { name: clear, type: method, label: 'Vider', icon: user-times }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }
@@ -61,4 +61,4 @@ easy_admin:
         fields:
           - { type: 'group', columns: 6, label: 'Joueurs', icon: 'users' }
           - property: 'users'
-            type: 'easyadmin_autocomplete'
+            label: 'Participants'

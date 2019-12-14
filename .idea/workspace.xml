@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/booking.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/projects.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/users.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserBackendController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +215,8 @@
       <workItem from="1575446903415" duration="26641000" />
       <workItem from="1575533058145" duration="2258000" />
       <workItem from="1575541345258" duration="1836000" />
-      <workItem from="1575747171527" duration="10524000" />
+      <workItem from="1575747171527" duration="10924000" />
+      <workItem from="1576328091393" duration="9688000" />
     </task>
     <servers />
   </component>
