@@ -60,5 +60,4 @@ easy_admin:
       form:
         fields:
           - { type: 'group', columns: 6, label: 'Joueurs', icon: 'users' }
-          - property: 'users'
-            type: 'easyadmin_autocomplete'
+          - { property: 'users', label: 'Participants' }

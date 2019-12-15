@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/booking.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/projects.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/easy_admin/users.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/basic.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/projects.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/projects.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserBackendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Booking.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,19 +165,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\public\custom" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle\views" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle\views" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle\views\ChangePassword" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle" />
       <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle" />
       <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle\ChangePassword" />
       <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\views" />
       <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\ChangePassword" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle\views" />
-      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle\views" />
-      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle\views\ChangePassword" />
-      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle" />
-      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle\ChangePassword" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -217,6 +211,8 @@
       <workItem from="1575541345258" duration="1836000" />
       <workItem from="1575747171527" duration="10924000" />
       <workItem from="1576328091393" duration="9688000" />
+      <workItem from="1576418442463" duration="137000" />
+      <workItem from="1576418756432" duration="8127000" />
     </task>
     <servers />
   </component>

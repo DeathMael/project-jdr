@@ -1,8 +1,6 @@
 easy_admin:
   design:
     assets:
-      css:
-        - 'bundles/easyadmin/custom.css'
       favicon:
         path: '/media/Logo Taliesin.webp'
         mime_type: 'image/webp'
