@@ -30,7 +30,7 @@ class BookingBackendController extends EasyAdminController
         $newForm->handleRequest($this->request);
         if ($newForm->isSubmitted() && $newForm->isValid()) {
             if (strtotime(date_format($entity->getBeginAt(), 'd-m-Y H:i:s')) < time()) {
-                $this->addFlash('error', 'La date de début de l\'évènement '.date_format($entity->getBeginAt(), 'd-m-Y H:i:s').' ne peut être antérieur à aujourd\'hui !');
+                $this->addFlash('error', 'La date de début de l\'évènement '.date_format($entity->getBeginAt(), 'd/m/Y H:i').' ne peut être antérieur à aujourd\'hui !');
                 return $this->redirectToRoute('easyadmin', array(
                     'action' => 'new',
                     'entity' => $this->request->query->get('entity'),

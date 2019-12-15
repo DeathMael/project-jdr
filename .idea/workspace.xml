@@ -3,12 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/design.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/game_master.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_primus.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_secondus.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/orbis_tertius.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/player.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/projects.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/projects.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin/users.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin/users.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserBackendController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Booking.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -213,6 +216,8 @@
       <workItem from="1576328091393" duration="9688000" />
       <workItem from="1576418442463" duration="137000" />
       <workItem from="1576418756432" duration="8127000" />
+      <workItem from="1576436692412" duration="967000" />
+      <workItem from="1576438549761" duration="4826000" />
     </task>
     <servers />
   </component>

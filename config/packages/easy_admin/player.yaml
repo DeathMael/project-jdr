@@ -1,7 +1,6 @@
 easy_admin:
   entities:
     Joueur:
-      help: 'Attention : Pour supprimer un projet, vous devez retirer les utilisateurs y participants'
       class: App\Entity\Project
       controller: App\Controller\ProjectBackendController
       label: 'Projet'

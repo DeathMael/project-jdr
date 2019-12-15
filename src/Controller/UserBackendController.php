@@ -163,7 +163,7 @@ class UserBackendController extends EasyAdminController
             $entity = $easyadmin['item'];
             $this->dispatch(EasyAdminEvents::PRE_REMOVE, ['entity' => $entity]);
             if ($this->getUser() == $entity) {
-                $this->addFlash('error', 'Impossible de supprimer l\'utilisateur courant !');
+                $this->addFlash('error', 'Impossible de supprimer l\'utilisateur '.$entity->getUsername().' car il est actuellement connecté !');
                 return $this->redirectToReferrer();
             }
             if ($entity instanceof User)
@@ -184,15 +184,19 @@ class UserBackendController extends EasyAdminController
         $class = $this->entity['class'];
         $primaryKey = $this->entity['primary_key_field_name'];
         $users='';
-
         $entities = $this->em->getRepository($class)
             ->findBy([$primaryKey => $ids]);
-
         foreach ($entities as $entity) {
-            $this->em->remove($entity);
-            $users.=$entity->getUsername().', ';
+            if ($this->getUser() == $entity) {
+                $this->addFlash('error', 'Impossible de supprimer l\'utilisateur '.$entity->getUsername().' car il est actuellement connecté !');
+            }
+            else {
+                $this->em->remove($entity);
+                $users.=$entity->getUsername().', ';
+            }
         }
-        $this->addFlash('success', 'Les utilisateurs : '.$users.'ont été supprimés avec succès !');
+        if ($users!='')
+            $this->addFlash('success', 'Les utilisateurs : '.$users.'ont été supprimés avec succès !');
         $this->em->flush();
     }
 

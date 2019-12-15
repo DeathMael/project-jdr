@@ -209,4 +209,9 @@ class Booking {
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->title.' le '.date_format($this->beginAt, 'd/m/Y').' à '.date_format($this->beginAt, 'H:i');
+    }
 }
