@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/BookingType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BookingType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/booking/calendar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/booking/calendar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/equipe/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/equipe/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -157,7 +154,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../symfony4-contact-form-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -199,6 +196,8 @@
       <workItem from="1575533058145" duration="2258000" />
       <workItem from="1575541520926" duration="14936000" />
       <workItem from="1575620153094" duration="17650000" />
+      <workItem from="1575887923796" duration="18000" />
+      <workItem from="1576481668524" duration="793000" />
     </task>
     <servers />
   </component>
