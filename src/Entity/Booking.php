@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking {
 	/**
@@ -197,7 +198,10 @@ class Booking {
 		return $this->updated_at;
 	}
 
-	public function setUpdatedAt( ? \DateTimeInterface $updated_at) : self{
+	/**
+	 * @ORM\PreUpdate
+	 */
+	public function setUpdatedAt() {
 		$this->updated_at = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
 
 		return $this;
@@ -207,6 +211,9 @@ class Booking {
 		return $this->created_at;
 	}
 
+	/**
+	 * @ORM\PrePersist
+	 */
 	public function setCreatedAt() : self{
 		$this->created_at = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
 

@@ -20,7 +20,6 @@ class BookingController extends AbstractController {
 	/**
 	 * @Route("/", name="booking_index", methods={"GET"})
 	 */
-
 	public function index(BookingRepository $bookingRepository): Response{
 
 		$service = CalendarService::service();
@@ -42,16 +41,18 @@ class BookingController extends AbstractController {
 	 * @Route("/sync", name="booking_sync")
 	 */
 	public function sync(BookingRepository $bookingRepository) {
+
+		//Permet de synchroniser le calendar avec l'API Google
 		$service = CalendarService::service();
 		$results = $service->events->listEvents('primary');
+		//Récupération de toutes les valeurs des évènement GoogleCalendar
 		$events = $results->getItems();
 
 		foreach ($events as $event) {
+			//utilisation de Doctrine pour savoir si l'évènement existe déjà
 			if ($bookingRepository->findOneByGoogleid($event->getId()) == NULL) {
 
 				$booking = new Booking();
-
-				$booking->setCreatedAt();
 
 				$booking->setTitle($event->getSummary());
 				$booking->setDescription($event->getDescription());
@@ -109,30 +110,36 @@ dump($client);*/
 	 * @Route("/new", name="booking_new", methods={"GET","POST"})
 	 */
 	public function new (Request $request): Response{
+
+		//Création d'une réunion
 		$booking = new Booking();
+		//Appel du service créé pour avoir l'accès client a l'API GoogleCalendar
 		$service = CalendarService::service();
 		$form = $this->createForm(BookingType::class, $booking);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			//$datetime=new \DateTime();
-			// $datetime->format('Y-m-d H:i:s');
-			// $booking->setCreatedAt($datetime);
-			$booking->setCreatedAt();
-			$entityManager = $this->getDoctrine()->getManager();
 
+			$entityManager = $this->getDoctrine()->getManager();
+			//Persistance de cet évènement en bdd
 			$entityManager->persist($booking);
 
+			//Définition du Calendrier google
 			$calendarId = 'primary';
+
+			//Création d'un nouvel event et définition des valeurs attendues par la base de donnée de Google
 			$event = new \Google_Service_Calendar_Event([
 				'summary' => $booking->getTitle(),
 				'description' => $booking->getDescription(),
+				//Formatage de la date pour le bon fuseau horraire.
 				'start' => ['dateTime' => date_format($booking->getBeginAt(), "Y-m-d\TH:i:s"),
 					'timeZone' => 'Europe/Paris'],
 				'end' => ['dateTime' => date_format($booking->getEndAt(), "Y-m-d\TH:i:s"),
 					'timeZone' => 'Europe/Paris'],
 			]);
+			//création d'évenement du coté de google
 			$results = $service->events->insert($calendarId, $event);
+			//écriture en bdd de l'id de cet évènement google pour pouvoir le modifier par la suite
 			$booking->setGoogleid($results->getId());
 			$entityManager->flush();
 
