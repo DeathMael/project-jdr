@@ -49,6 +49,8 @@ class UserBackendController extends EasyAdminController
                         'entity' => $this->request->query->get('entity'),
                     ));
             }
+            if ($entity->getBooking()!=null)
+                $entity->getBooking()->setUpdatedAt();
             $this->addFlash('success', 'L\'utilisateur '.$entity->getUsername() . ' est désormais inscrit en tant qu\''.$entity->getFormatedRank().' !');
             $this->dispatch(EasyAdminEvents::PRE_PERSIST, ['entity' => $entity]);
             $this->executeDynamicMethod('persist<EntityName>Entity', [$entity, $newForm]);
@@ -118,6 +120,8 @@ class UserBackendController extends EasyAdminController
                             'entity' => $this->request->query->get('entity'),
                         ));
                 }
+                if ($entity->getBooking()!=null)
+                    $entity->getBooking()->setUpdatedAt();
                 $this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername(). ' a été modifié avec succcès !');
             }
             $this->processUploadedFiles($editForm);
@@ -167,6 +171,8 @@ class UserBackendController extends EasyAdminController
                 return $this->redirectToReferrer();
             }
             if ($entity instanceof User)
+                if ($entity->getBooking()!=null)
+                    $entity->getBooking()->setUpdatedAt();
                 $this->addFlash('success', 'L\'utilisateur '.$entity->getUsername().' a été supprimé avec succès!');
             try {
                 $this->executeDynamicMethod('remove<EntityName>Entity', [$entity, $form]);
@@ -191,8 +197,10 @@ class UserBackendController extends EasyAdminController
                 $this->addFlash('error', 'Impossible de supprimer l\'utilisateur '.$entity->getUsername().' car il est actuellement connecté !');
             }
             else {
-                $this->em->remove($entity);
+                if ($entity->getBooking()!=null)
+                    $entity->getBooking()->setUpdatedAt();
                 $users.=$entity->getUsername().', ';
+                $this->em->remove($entity);
             }
         }
         if ($users!='')
@@ -245,6 +253,7 @@ class UserBackendController extends EasyAdminController
         $class = $this->entity['class'];
         $em = $this->getDoctrine()->getManagerForClass($class);
         $unpromoted='';
+        $promoted='';
         foreach ($ids as $id) {
             $user = $em->find($class, $id);
             if ($user->getFormatedRank() != 'Orbis Primus') {
@@ -253,13 +262,16 @@ class UserBackendController extends EasyAdminController
                 } else {
                     $user->setRank(2);
                 }
+                $promoted.=$user->getUsername().', ';
             }
             else {
                 $unpromoted.=$user->getUsername().', ';
             }
         }
-        if ($unpromoted!='')
+        if ($unpromoted!='') {
             $this->addFlash('error', 'Les utilisateurs '.$unpromoted. 'n\'ont pas pu être promu !');
+            $this->addFlash('success', 'Les utilisateurs '.$promoted. 'ont pu être promu !');
+        }
         else $this->addFlash('success', 'Les utilisateurs sélectionnés ont tous été promu');
         $this->em->flush();
     }
@@ -270,6 +282,7 @@ class UserBackendController extends EasyAdminController
         $class = $this->entity['class'];
         $em = $this->getDoctrine()->getManagerForClass($class);
         $undemoted='';
+        $demoted='';
         foreach ($ids as $id) {
             $user = $em->find($class, $id);
             if ($user->getFormatedRank() != 'Orbis Tertius') {
@@ -278,13 +291,16 @@ class UserBackendController extends EasyAdminController
                 } else {
                     $user->setRank(0);
                 }
+                $demoted.=$user->getUsername().', ';
             }
             else {
                 $undemoted.=$user->getUsername().', ';
             }
         }
-        if ($undemoted!='')
+        if ($undemoted!='') {
             $this->addFlash('error', 'Les utilisateurs '.$undemoted. 'n\'ont pas pu être retrogradés !');
+            $this->addFlash('success', 'Les utilisateurs '.$demoted. 'ont pu être retrogradés !');
+        }
         else $this->addFlash('success', 'Les utilisateurs sélectionnés ont tous été rétrogradé');
         $this->em->flush();
     }

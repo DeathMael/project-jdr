@@ -263,7 +263,7 @@ class ProjectBackendController extends EasyAdminController
                 $project->setStatute(1);
             else $project->setStatute(0);
         }
-        $this->addFlash('success', 'Tous les projets sélectionnés ont changés de catégories !');
+        $this->addFlash('success', 'Tous les projets sélectionnés ont changé de catégories !');
         $this->em->flush();
     }
 
@@ -271,20 +271,25 @@ class ProjectBackendController extends EasyAdminController
     {
         $class = $this->entity['class'];
         $em = $this->getDoctrine()->getManagerForClass($class);
+        $uncleared='';
+        $cleared='';
         foreach ($ids as $id) {
-            $projects='';
             $project = $em->find($class, $id);
             if (count($project->getUsers())>0) {
                 foreach ($project->getUsers() as $key=>$user)
                 {
                     $project->removeUser($user);
                 }
+            $cleared.='n°'.$project->getId().' ,';
             }
-            else $projects.='n°'.$project->getId().' ,';
+            else $uncleared.='n°'.$project->getId().' ,';
         }
-        if ($projects!='')
-            $this->addFlash('error', 'Les projets : '.$projects.' n\'ont pas pu être vidés car il ne possède pas d\'utilisateurs !');
-        else $this->addFlash('success', 'Tous les projets sélectionnés ont été vidés de leurs utilisateurs !');
+        if ($uncleared!='') {
+            $this->addFlash('error', 'Les projets : '.$uncleared.' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
+            $this->addFlash('success', 'Les projets : '.$cleared.' ont pu être vidé !');
+        }
+
+        else $this->addFlash('success', 'Tous les projets sélectionnés ont été vidé de leurs utilisateurs !');
         $this->em->flush();
     }
 }

@@ -277,20 +277,24 @@ class BookingBackendController extends EasyAdminController
     {
         $class = $this->entity['class'];
         $em = $this->getDoctrine()->getManagerForClass($class);
+        $uncleared='';
+        $cleared='';
         foreach ($ids as $id) {
-            $events='';
             $event = $em->find($class, $id);
             if (count($event->getUsers())>0) {
                 foreach ($event->getUsers() as $key=>$user)
                 {
                     $event->removeUser($user);
                 }
+                $cleared.=$event->getTitle().', ';
             }
-            else $events.=$event->getTitle().', ';
+            else $uncleared.=$event->getTitle().', ';
         }
-        if ($events!='')
-            $this->addFlash('error', 'Les évènements : '.$events.' n\'ont pas pu être vidés car il ne possède pas d\'utilisateurs !');
-        else $this->addFlash('success', 'Tous les évènements sélectionnés ont été vidés de leurs utilisateurs !');
+        if ($uncleared!='') {
+            $this->addFlash('error', 'Les évènements : '.$uncleared.' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
+            $this->addFlash('success', 'Les évènements : '.$cleared.' ont pu être vidé !');
+        }
+        else $this->addFlash('success', 'Tous les évènements sélectionnés ont été vidé de leurs utilisateurs !');
         $this->em->flush();
     }
 }
