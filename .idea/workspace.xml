@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/booking/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/booking/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/equipe/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/equipe/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/project/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/project/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +199,9 @@
       <workItem from="1575620153094" duration="17650000" />
       <workItem from="1575887923796" duration="18000" />
       <workItem from="1576481668524" duration="1341000" />
-      <workItem from="1576568471710" duration="902000" />
+      <workItem from="1576568471710" duration="1158000" />
+      <workItem from="1576569853816" duration="565000" />
+      <workItem from="1576570633041" duration="441000" />
     </task>
     <servers />
   </component>
