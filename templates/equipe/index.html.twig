@@ -25,7 +25,11 @@
 
 {% block body %}
 
+
     <div class="container pt-5 my-5 z-depth-1 equipe">
+
+
+        <!--TROIS PREMIERS MEMBRES-->
         <section class="p-md-3 mx-md-5 text-center text-lg-left">
 
 
@@ -40,7 +44,7 @@
 
                             <div class="p-4">
                                 <div
-                                        class="avatar w-100 d-flex justify-content-center align-items-center"
+                                        class="avatar w-100 d-flex justify-content-center align-items-center wow fadeIn" data-wow-delay="1s"
                                 >
                                     <img
                                             src="{{ asset('media/Ludesco.png') }}"
@@ -67,7 +71,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <div class="p-4">
                                 <div
-                                        class="avatar w-100 d-flex justify-content-center align-items-center"
+                                        class="avatar w-100 d-flex justify-content-center align-items-center  wow fadeIn" data-wow-delay="1s"
                                 >
                                     <img
                                             src="{{ asset('media/cyprien.png') }}"
@@ -92,7 +96,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <div class="p-4">
                                 <div
-                                        class="avatar w-100  d-flex justify-content-center align-items-center"
+                                        class="avatar w-100  d-flex justify-content-center align-items-center  wow fadeIn" data-wow-delay="1s"
                                 >
                                     <img
                                             src="{{ asset('media/platon.png') }}"
@@ -124,14 +128,14 @@
 
 
 
-
+        <!--DEUX DERNIERS MEMBRES-->
         <section class="p-md-3 mx-md-5 text-center text-lg-left">
 
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="p-4">
                         <div
-                                class="avatar w-100 d-flex justify-content-center align-items-center"
+                                class="avatar w-100 d-flex justify-content-center align-items-center  wow fadeIn" data-wow-delay="1s"
                         >
                             <img
                                     src="{{ asset('media/seneca.png') }}"
@@ -153,14 +157,14 @@
 
 
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="p-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 ">
+                    <div class="p-4 ">
                         <div
-                                class="avatar w-100  d-flex justify-content-center align-items-center"
+                                class="avatar w-100  d-flex justify-content-center align-items-center wow fadeIn" data-wow-delay="1s"
                         >
                             <img
                                     src="{{ asset('media/socratespng.png') }}"
-                                    class="img-fluid rounded-circle z-depth-1" alt="membre Romain"
+                                    class="img-fluid rounded-circle z-depth-1 " alt="membre Romain"
                             />
                         </div>
                         <div class="text-center mt-3">
@@ -185,20 +189,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- MODALS-->
+    <!-- MODALS ROMAIN-->
     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -256,14 +247,6 @@
 
 
 
-
-
-
-
-
-
-
-
     <!-- MODALS MICHAEL-->
 
 
@@ -297,10 +280,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
 
@@ -368,5 +347,16 @@
 {% endblock %}
 
 {% block javascripts %}
-
+<script>
+    wow = new WOW(
+    {
+        boxClass:     'wow',      // default
+        animateClass: 'animated', // default
+        offset:       0,          // default
+        mobile:       true,       // default
+        live:         true        // default
+    }
+    );
+    wow.init();
+</script>
 {% endblock %}
