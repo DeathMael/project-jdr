@@ -18,9 +18,11 @@
 {% block body %}
 
     <div class="container mt-5">
+
     <div class="row">
     <!-- Grid row -->
         <div class="col-md-6 offset-md-3">
+
             <div class="card text-white">
 
                 <div class="card-body mx-4">
@@ -35,9 +37,9 @@
                     <div class="text-center mb-3 col-4">
                         <div class="g-recaptcha" data-sitekey="6LdrFsYUAAAAAFTVAS1To0nqzrgHZEKKVW0rbQ2L"></div>
                         <button class="btn btn-light">{{ button| default('Enregistrer') }}</button>
+                       </div>
                     </div>
-                </div>
-            </div>
+              </div>
             </div>
         </div>
         {{ form_end(email_form) }}

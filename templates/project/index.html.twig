@@ -21,6 +21,7 @@
 {% endblock %}
 {% block body %}
 
+    <!--jumbotron-->
 
     <div class="jumbotron jumbotron-fluid elegant-color-dark p-0 m-0 wow slideInLeft" data-wow-duration="2s" data-wow-delay="1s">
         <div class="container">
@@ -34,8 +35,14 @@
 
                 <a class="lienF" href="http://www.ffjdr.org/">Fédération Française de Jeux de Rôle</a></p>
         </div>
+
+
+
+        <!--Partie Container text + images-->
     </div>
     <div class="container pt-1">
+
+        <!--Premier bloc-->
         <div class="row mt-5">
             <section class="col-12 col-lg-6">
                 <p>
@@ -69,24 +76,26 @@
 
         </div>
         <div class="row mt-5">
-            <aside class="col-12 col-lg-6">
-                <img src="{{ asset('media/img2.jpg') }}" class="img-fluid">
+                <aside class="col-12 col-lg-6">
+                    <img src="{{ asset('media/img2.jpg') }}" class="img-fluid">
 
-            </aside>
-            <section class="col-12 col-lg-6">
-                <p>
-                    Le jeu se déroulera dans un univers empreint de mystère, où beaucoup d’éléments ne sont pas encore clairs pour l’Homme,
-                    et où chacun lutte pour en savoir plus que les autres afin d’établir sa supériorité, qu’elle soit scientifique, politique,
-                    religieuse ou militaire. Foin de grand héroïsme, de toute-puissance et génocides draconiques: l’emphase sera mise sur l’exploration,
-                    l’enquête, la recherche et la découverte d’informations, de secrets et connaissances. Le danger n’est jamais bien loin,
-                    et il est fortement déconseillé de l’affronter ouvertement.
+                </aside>
+                <section class="col-12 col-lg-6">
+                    <p>
+                        Le jeu se déroulera dans un univers empreint de mystère, où beaucoup d’éléments ne sont pas encore clairs pour l’Homme,
+                        et où chacun lutte pour en savoir plus que les autres afin d’établir sa supériorité, qu’elle soit scientifique, politique,
+                        religieuse ou militaire. Foin de grand héroïsme, de toute-puissance et génocides draconiques: l’emphase sera mise sur l’exploration,
+                        l’enquête, la recherche et la découverte d’informations, de secrets et connaissances. Le danger n’est jamais bien loin,
+                        et il est fortement déconseillé de l’affronter ouvertement.
 
-                    Afin de mettre en avant cette atmosphère à la fois périlleuse et exaltante de grandes explorations et d’inconnu,
-                    nous développons un système de règles dédié, axé sur un narrativisme fort et faisant abstraction des traditionnels dés pour les remplacer par quelque chose d’unique,
-                    propre à notre univers de jeu.
-                </p>
-            </section>
+                        Afin de mettre en avant cette atmosphère à la fois périlleuse et exaltante de grandes explorations et d’inconnu,
+                        nous développons un système de règles dédié, axé sur un narrativisme fort et faisant abstraction des traditionnels dés pour les remplacer par quelque chose d’unique,
+                        propre à notre univers de jeu.
+                    </p>
+                </section>
         </div>
+
+        <!--Second bloc-->
         <div class="row mt-5">
             <section class="col-12 col-lg-6">
                 <p>
@@ -103,46 +112,52 @@
 
                 </p>
             </section>
-            <aside class="col-12 col-lg-6">
-                <img src="{{ asset('media/img1.jpg') }}" class="img-fluid">
-            </aside>
+                <aside class="col-12 col-lg-6">
+                    <img src="{{ asset('media/img1.jpg') }}" class="img-fluid">
+                </aside>
+            </div>
+
+                 <p>Si vous voulez nous rejoindre c'est par <a class="lienF" href="{{ path('contact') }}">là</a></p>
         </div>
 
-        <p>Si vous voulez nous rejoindre c'est par <a class="lienF" href="{{ path('contact') }}">là</a></p>
-    </div>
+
+    <!--Partie Tableau du Jeu-->
+
     <div class="container text-center pt-1">
         <h2 class="white-text">Tableau de Jeu</h2>
         <table class="table white-text">
             <thead>
-            <tr>
-                <th scope="col">Numéro</th>
-                <th scope="col">Statut choisi</th>
-                <th>Édition</th>
-            </tr>
+                <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Statut choisi</th>
+                    <th>Édition</th>
+                </tr>
             </thead>
             <tbody>
             {% for project in projects %}
                 <tr>
                     <th scope="row">{{ project.id }}</th>
-                    <td>{{ project.statute ? 'Maître de jeu' : 'Joueur' }}</td>
-                    <td>
-                        <a href="{{ path("project_edit", {id: project.id}) }}" class="btn btn-light">Éditer</a>
-                        <form method="post" action="{{ path('project_delete', {id: project.id}) }}" style="display: inline-block">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
-                            <button class="btn btn-light">Supprimer</button>
-                        </form>
-                    </td>
+                         <td>{{ project.statute ? 'Maître de jeu' : 'Joueur' }}</td>
+                        <td>
+                            <a href="{{ path("project_edit", {id: project.id}) }}" class="btn btn-light">Éditer</a>
+                            <form method="post" action="{{ path('project_delete', {id: project.id}) }}" style="display: inline-block">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
+                                <button class="btn btn-light">Supprimer</button>
+                            </form>
+                        </td>
                 </tr>
 
             {% endfor %}
+
             </tbody>
         </table>
-        <a class="btn btn-light" href="{{ path('project_new') }}">Choisir un rôle</a>
+            <a class="btn btn-light" href="{{ path('project_new') }}">Choisir un rôle</a>
     </div>
 
 
 {% endblock %}
+
 {% block javascripts %}
     <script>
         wow = new WOW(
