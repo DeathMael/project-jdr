@@ -9,7 +9,8 @@
                 background-size: cover;
             }
             .card{background:rgba(33,33,33,0.7);
-                border-radius: 25px;}
+                border-radius: 25px;
+            height: 100vh;}
         </style>
 
 {% endblock %}
@@ -17,7 +18,7 @@
 
 {% block body %}
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
 
     <div class="row">
     <!-- Grid row -->
@@ -28,13 +29,13 @@
                 <div class="card-body mx-4">
 
                     <!--Header-->
-                    <div class="text-center">
+                    <div class="text-center mt-5">
                         <h3 class="text-white mb-5"><strong>Nous rejoindre</strong></h3>
                     </div>
                         {{ form_start(email_form) }}
                         {{ form_widget(email_form) }}
 
-                    <div class="text-center mb-3 col-4">
+                    <div class="text-center mb-5 col-4">
                         <div class="g-recaptcha" data-sitekey="6LdrFsYUAAAAAFTVAS1To0nqzrgHZEKKVW0rbQ2L"></div>
                         <button class="btn btn-light">{{ button| default('Enregistrer') }}</button>
                        </div>

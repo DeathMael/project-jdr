@@ -41,13 +41,14 @@
 {% endblock %}
 
 {% block body %}
-<div class="container mb-5 reduce">
-    <form method="post" class="p-5 mt-5 rounded-lg">
-        {% if app.user %}
-            <p class="mb-3">
-               Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </p>
-        {% endif %}
+        <div class="container mb-5 mt-5">
+
+        <div class="row">
+        <!-- Grid row -->
+
+        <div class="col-md-6 offset-md-3">
+
+            <div class="card text-white mt-5">
 
         <h1 class="h3 mb-5 font-weight-normal">Se connecter</h1>
         <label for="inputUsername">Pseudo</label>

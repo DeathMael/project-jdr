@@ -11,163 +11,352 @@
             background-size: cover;
         }
 
+        span{
+            color: black;
+        }
+
+        .equipe{
+             background:rgba(33,33,33,0.7);
+            border-radius: 25px;
+            color: white;
+        }
     </style>
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
 
 
-        <!--Section: Content-->
-        <section class="text-center dark-grey-text">
+    <div class="container pt-5 my-5 z-depth-1 equipe">
 
 
-            <!-- Grid row -->
-            <div class="row">
+        <!--TROIS PREMIERS MEMBRES-->
+        <section class="p-md-3 mx-md-5 text-center text-lg-left">
 
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-12 mb-4">
-                    <!--Card-->
-                    <div class="card testimonial-card">
-                        <!--Background color-->
-                        <div class="card-up info-color"></div>
-                        <!--Avatar-->
-                        <div class=" mx-auto white">
-                            <img src="{{ asset('media/platon.jpg') }}" class=" img-fluid">
-                        </div>
-                        <div class="card-body">
-                            <!--Name-->
-                            <h4 class="font-weight-bold mb-4">ROMAIN - Lead Narrative Designer</h4>
-                            <hr>
-                            <!--Quotation-->
-                            <p class="dark-grey-text mt-4">Romain est issu d’une formation académique
-                                en littérature et en sciences du jeu, contexte dans lequel il a - entre autres - travaillé sur le jeu de rôle
-                                et sur la littérature fantastique. Grand joueur (en termes quantitatifs plutôt que qualitatifs) de jeux vidéos,
-                                de jeux de société et de jeux de rôle, il passe la plupart de son temps libre à travailler sur des projets de jeux où il explore
-                                les manières de créer un investissement émotionnel chez les joueurs. Son expérience en tant que MJ couvre dix années et de nombreux
-                                jeux/univers différents, le plus souvent en créant ses propres scénarios et contenus. Il est le principal instigateur du Projet Odyssey,
-                                né d’un désir mégalomaniaque (si si) de réunir autour d’une même table (dématérialisée qui plus est) des dizaines de joueurs et MJ différents,
-                                en les faisant cohabiter dans la même temporalité et interagir les uns avec les autres.</p>
-                        </div>
-                    </div>
-                    <!--Card-->
-                </div>
-                <!--Grid column-->
 
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <!--Card-->
-                    <div class="card testimonial-card">
-                        <!--Background color-->
-                        <div class="card-up blue-gradient">
-                        </div>
-                        <!--Avatar-->
-                        <div class=" mx-auto white">
-                            <img src="{{ asset('media/platon.jpg') }}" class=" img-fluid">
-                        </div>
-                        <div class="card-body">
-                            <!--Name-->
-                            <h4 class="font-weight-bold mb-4">MICHAËL - Lead Designer</h4>
-                            <hr>
-                            <!--Quotation-->
-                            <p class="dark-grey-text mt-4">En tant que joueur de manière général et role player plus particulièrement,
-                                Michael a surtout fait ses armes et est toujours actif sur World of Warcraft, participant à plusieurs projets de jeu de rôle à différents niveaux
-                                et dans différentes situations ( gestion de guilde et investissement au niveau communautaire, création de trames et animation d’événements, etc ).
-                                Ancien étudiant en philosophie, grand amateur de littérature et d’Histoire, il apprécie particulièrement le jeu de rôle pour son aspect à la fois narratif
-                                et participatif, en tant que récit collaboratif dans lequel chacun mêle sa voix à celle des autres pour former une histoire globale. Séduit par les ambitions
-                                affichées du Projet Odyssey et leur développement qui a donné le Collectif Taliesin, il s’intéresse et s’occupe principalement de la création des univers de jeu,
-                                des mondes qui accueilleront joueurs et MJ, sur lesquels pourront se tisser trames et récits et dans lesquels chacun jouera. </p>
-                        </div>
-                    </div>
-                    <!--Card-->
-                </div>
-                <!--Grid column-->
+                    <h2 class="text-center mx-auto font-weight-bold mb-4 pb-2">Notre équipe</h2>
 
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <!--Card-->
-                    <div class="card testimonial-card">
-                        <!--Background color-->
-                        <div class="card-up indigo"></div>
-                        <!--Avatar-->
-                        <div class=" mx-auto white">
-                            <img src="{{ asset('media/platon.jpg') }}" class=" img-fluid">
-                        </div>
-                        <div class="card-body">
-                            <!--Name-->
-                            <h4 class="font-weight-bold mb-4">CYPRIEN - Lead Designer</h4>
-                            <hr>
-                            <!--Quotation-->
-                            <p class="dark-grey-text mt-4">
-                                Provenant de la même branche génétique divergente de l’espèce couramment appelée Homo Sapiens que Romain,
-                                il est en conséquence fréquent que Cyprien lui serve (parfois) de complice et (souvent) de cobaye.
-                                Adepte avide des pratiques ludiques et narratives, fervent amateur de jeux de rôles et de stratégie,
-                                c’est armé de ses quelques années d’expérience dans l’organisation et la direction de parties de jeu de rôle
-                                (qui curieusement, sont plus nombreuses que ses années d’expérience en tant que joueur) qu’il s’est laissé prendre
-                                au piège lancé dans l’aventure pour voir un peu ce que ça peut donner.
-                                Il s’occupe principalement du recensement et de la coordination des trames et intrigues qui seront proposées aux joueurs,
-                                et se permettra toujours de glisser (subtilement) une chance infime mais bien réelle pour ceux-ci de reprendre Jérusalem.</p>
-                        </div>
-                    </div>
-                    <!--Card-->
-                </div>
-                <!--Grid column-->
 
-                <div class="col-lg-4 col-md-6 mb-4 offset-md-2">
-                    <!--Card-->
-                    <div class="card testimonial-card">
-                        <!--Background color-->
-                        <div class="card-up indigo"></div>
-                        <!--Avatar-->
-                        <div class=" mx-auto white">
-                            <img src="{{ asset('media/platon.jpg') }}" class=" img-fluid">
-                        </div>
-                        <div class="card-body">
-                            <!--Name-->
-                            <h4 class="font-weight-bold mb-4">CORENTIN</h4>
-                            <hr>
-                            <!--Quotation-->
-                            <p class="dark-grey-text mt-4">Corentin, joueur passionné de jeux et plus particulièrement
-                                de jeux de rôle depuis bientôt une vingtaine d'années et ce quel qu'en soit le support, a rejoint le collectif Taliesin afin
-                                de pouvoir participer a la création de l'un d'entre eux. Il s'occupe principalement d'aider a la création de la trame principale quand
-                                son travail lui laisse un peu de temps tout en essayant empêcher Romain de faire sombrer le monde dans le chaos pendant son absence.</p>
-                        </div>
-                    </div>
-                    <!--Card-->
-                </div>
-                <!--Grid column-->
+                    <div class="row d-flex justify-content-center">
 
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <!--Card-->
-                    <div class="card testimonial-card">
-                        <!--Background color-->
-                        <div class="card-up indigo"></div>
-                        <!--Avatar-->
-                        <div class=" mx-auto white">
-                            <img src="{{ asset('media/platon.jpg') }}" class=" img-fluid">
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+
+                            <div class="p-4">
+                                <div
+                                        class="avatar w-100 d-flex justify-content-center align-items-center wow fadeIn" data-wow-delay="1s"
+                                >
+                                    <img
+                                            src="{{ asset('media/Ludesco.png') }}"
+                                            class="img-fluid rounded-circle z-depth-1" alt="membre Romain"
+                                    />
+                                </div>
+                                <div class="text-center mt-3">
+                                    <h6 class="font-weight-bold pt-2">ROMAIN - Lead Narrative Designer</h6>
+                                    <p>
+
+                                            Romain est issu d’une formation académique en littérature et en sciences du jeu,
+                                                contexte dans lequel il a - entre autres - travaillé sur le jeu de rôle et sur la littérature fantastique.
+                                        Grand joueur (en termes quantitatifs plutôt que...
+
+                                    </p>
+                                    <button type="button" class="btn btn-grey btn-sm" data-toggle="modal" data-target="#basicExampleModal">
+                                        En savoir plus
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <!--Name-->
-                            <h4 class="font-weight-bold mb-4">ROMAIN</h4>
-                            <hr>
-                            <!--Quotation-->
-                            <p class="dark-grey-text mt-4">Romain, étudiant en école d'ingénieur,
-                                participe à des jeux de rôle depuis maintenant 5 ans. Il a d'abord joué à Donjons et Dragons avant d'expérimenter
-                                quelques systèmes faits maison et de commencer une campagne de l'anneau unique. Il a voulu rejoindre plus récemment
-                                l'équipe organisatrice pour mettre à profit le temps libre que la vie étudiante lui procure. Il s'est occupé notamment
-                                de l'activité sur les réseaux sociaux, et à participé au lancement du pôle règles. </p>
+
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="p-4">
+                                <div
+                                        class="avatar w-100 d-flex justify-content-center align-items-center  wow fadeIn" data-wow-delay="1s"
+                                >
+                                    <img
+                                            src="{{ asset('media/cyprien.png') }}"
+                                            class="img-fluid rounded-circle z-depth-1" alt="membre Cyprien"
+                                    />
+                                </div>
+                                <div class="text-center mt-3">
+                                    <h6 class="font-weight-bold pt-2">CYPRIEN - Lead Designer</h6>
+                                    <p>
+                                        Provenant de la même branche génétique divergente de l’espèce couramment appelée
+                                        Homo Sapiens que Romain, il est en conséquence fréquent que Cyprien lui serve (parfois) de complice et (souvent) de cobaye.
+                                    </p>
+                                    <button type="button" class="btn btn-grey btn-sm" data-toggle="modal" data-target="#basicExampleModal2">
+                                        En savoir plus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="p-4">
+                                <div
+                                        class="avatar w-100  d-flex justify-content-center align-items-center  wow fadeIn" data-wow-delay="1s"
+                                >
+                                    <img
+                                            src="{{ asset('media/platon.png') }}"
+                                            class="img-fluid rounded-circle z-depth-1" alt="membre Michaël"
+                                    />
+                                </div>
+                                <div class="text-center mt-3">
+                                    <h6 class="font-weight-bold pt-2">MICHAËL - Lead Designer</h6>
+                                    <p>
+                                        En tant que joueur de manière général et role player plus particulièrement,
+                                        Michael a surtout fait ses armes et est toujours actif sur World of Warcraft,
+                                        participant à plusieurs projets de jeu de rôle à différents...
+                                    </p>
+                                    <button type="button" class="btn btn-grey btn-sm" data-toggle="modal" data-target="#basicExampleModal3">
+                                        En savoir plus
+                                    </button>
+                                </div>
+                            </div>
+                         </div>
+                        </div>
+
+                    </section>
+
+
+
+
+
+
+
+
+
+        <!--DEUX DERNIERS MEMBRES-->
+        <section class="p-md-3 mx-md-5 text-center text-lg-left">
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="p-4">
+                        <div
+                                class="avatar w-100 d-flex justify-content-center align-items-center  wow fadeIn" data-wow-delay="1s"
+                        >
+                            <img
+                                    src="{{ asset('media/seneca.png') }}"
+                                    class="img-fluid rounded-circle z-depth-1" alt="membre Corentin"
+                            />
+                        </div>
+                        <div class="text-center mt-3">
+                            <h6 class="font-weight-bold pt-2">CORENTIN</h6>
+                            <p>
+                                Corentin, joueur passionné de jeux et plus particulièrement de jeux de rôle depuis bientôt
+                                une vingtaine...
+                            </p>
+                            <button type="button" class="btn btn-grey btn-sm" data-toggle="modal" data-target="#basicExampleModal4">
+                                En savoir plus
+                            </button>
                         </div>
                     </div>
-                    <!--Card-->
                 </div>
-                <!--Grid column-->
 
-            </div>
-            <!-- Grid row -->
 
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 ">
+                    <div class="p-4 ">
+                        <div
+                                class="avatar w-100  d-flex justify-content-center align-items-center wow fadeIn" data-wow-delay="1s"
+                        >
+                            <img
+                                    src="{{ asset('media/socratespng.png') }}"
+                                    class="img-fluid rounded-circle z-depth-1 " alt="membre Romain"
+                            />
+                        </div>
+                        <div class="text-center mt-3">
+                            <h6 class="font-weight-bold pt-2">ROMAIN</h6>
+                            <p>
+                                Romain, étudiant en école d'ingénieur, participe à des jeux de rôle depuis maintenant 5 ans...
+                            </p>
+                            <button type="button" class="btn btn-grey btn-sm" data-toggle="modal" data-target="#basicExampleModal5">
+                                En savoir plus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+               </div>
         </section>
-        <!--Section: Content-->
-
-
     </div>
+
+
+
+
+
+
+
+    <!-- MODALS ROMAIN-->
+    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Romain</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Grand joueur (en termes quantitatifs plutôt que qualitatifs)
+                    de jeux vidéos, de jeux de société et de jeux de rôle. Il passe la plupart de son temps libre
+                    à travailler sur des projets de jeux où il explore les manières de créer un investissement émotionnel
+                    chez les joueurs. Son expérience en tant que MJ couvre dix années et de nombreux jeux/univers différents,
+                    le plus souvent en créant ses propres scénarios et contenus. Il est le principal instigateur du Projet Odyssey
+                    , né d’un désir mégalomaniaque (si si) de réunir autour d’une même table (dématérialisée qui plus est)
+                    des dizaines de joueurs et MJ différents, en les faisant cohabiter dans la même temporalité et interagir les uns avec les autres.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey btn-rounded waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODALS CYPRIEN-->
+
+    <div class="modal fade" id="basicExampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cyprien</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">Adepte avide des pratiques ludiques et narratives, fervent amateur de jeux de rôles et de stratégie,
+                    c’est armé de ses quelques années d’expérience dans l’organisation et la direction de parties de jeu de rôle
+                    (qui curieusement, sont plus nombreuses que ses années d’expérience en tant que joueur) qu’il s’est laissé prendre
+                    au piège lancé dans l’aventure pour voir un peu ce que ça peut donner.
+                    Il s’occupe principalement du recensement et de la coordination des trames et
+                    intrigues qui seront proposées aux joueurs, et se permettra toujours de glisser (subtilement)
+                    une chance infime mais bien réelle pour ceux-ci de reprendre Jérusalem.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey btn-rounded waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- MODALS MICHAEL-->
+
+
+
+    <div class="modal fade" id="basicExampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Michaël</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    En tant que joueur de manière général et role player plus particulièrement,
+                    Michael a surtout fait ses armes et est toujours actif sur World of Warcraft,
+                    participant à plusieurs projets de jeu de rôle à différents
+                    niveaux et dans différentes situations
+                    ( gestion de guilde et investissement au niveau communautaire, création de trames et animation d’événements, etc ).
+                    Ancien étudiant en philosophie, grand amateur de littérature et d’Histoire,
+                    il apprécie particulièrement le jeu de rôle pour son aspect à la fois narratif et participatif,
+                    en tant que récit collaboratif dans lequel chacun mêle sa voix à celle des autres pour former une histoire globale.
+                    Séduit par les ambitions affichées du Projet Odyssey et leur développement qui a donné le Collectif Taliesin,
+                    il s’intéresse et s’occupe principalement de la création des univers de jeu, des mondes qui accueilleront joueurs et MJ,
+                    sur lesquels pourront se tisser trames et récits et dans lesquels chacun jouera.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey btn-rounded waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--MODALS CORENTIN-->
+
+    <div class="modal fade" id="basicExampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Michaël</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Corentin, joueur passionné de jeux et plus particulièrement de jeux de rôle depuis bientôt
+                    une vingtaine d'années et ce quel qu'en soit le support, a rejoint le collectif Taliesin afin
+                    de pouvoir participer a la création de l'un d'entre eux.
+                    Il s'occupe principalement d'aider a la création de la trame principale
+                    quand son travail lui laisse un peu de temps tout en essayant empêcher Romain de faire sombrer le monde dans le chaos pendant son absence.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey btn-rounded waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--MODALS ROMAIN-->
+
+
+
+    <div class="modal fade" id="basicExampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Romain</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">Il a d'abord joué à Donjons et Dragons avant d'expérimenter quelques systèmes faits maison
+                    et de commencer une campagne de l'anneau unique. Il a voulu rejoindre plus récemment l'équipe organisatrice pour
+                    mettre à profit le temps libre que la vie étudiante lui procure. Il s'est occupé notamment de l'activité sur les réseaux sociaux,
+                    et à participé au lancement du pôle règles.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-grey btn-rounded waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    wow = new WOW(
+    {
+        boxClass:     'wow',      // default
+        animateClass: 'animated', // default
+        offset:       0,          // default
+        mobile:       true,       // default
+        live:         true        // default
+    }
+    );
+    wow.init();
+</script>
 {% endblock %}
