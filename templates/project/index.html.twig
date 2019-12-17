@@ -22,7 +22,7 @@
 {% block body %}
 
 
-    <div class="jumbotron jumbotron-fluid elegant-color-dark p-0 m-0">
+    <div class="jumbotron jumbotron-fluid elegant-color-dark p-0 m-0 wow slideInLeft" data-wow-duration="2s" data-wow-delay="1s">
         <div class="container">
             <h1 class="display-4">Projet Odyssey</h1>
             <p class="lead ">Le Projet Odyssey est un projet de création de jeu de rôle.
@@ -141,5 +141,20 @@
         <a class="btn btn-light" href="{{ path('project_new') }}">Choisir un rôle</a>
     </div>
 
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        wow = new WOW(
+            {
+                boxClass:     'wow',      // default
+                animateClass: 'animated', // default
+                offset:       0,          // default
+                mobile:       true,       // default
+                live:         true        // default
+            }
+        )
+        wow.init();
+    </script>
 
 {% endblock %}
