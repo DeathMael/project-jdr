@@ -195,6 +195,8 @@ class User extends BaseUser implements UserInterface
     {
         switch ($this->getRoles())
         {
+            case ["ROLE_USER"]: return 'Utilisateur';
+            break;
             case ["[ROLE_USER]"]: return 'Utilisateur';
             break;
             case ["ROLE_ADMIN"]: return 'Administrateur';

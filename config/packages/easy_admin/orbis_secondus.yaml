@@ -13,11 +13,6 @@ easy_admin:
           - { property: 'username', label: 'Nom d''utilisateur'}
           - { property: 'email', type: 'email', label: 'Email'}
           - { type: 'group', columns: 5, label: 'Informations Complémentaires', icon: 'code' }
-          - property: 'event'
-            label: 'Inscris à l''évènement'
-            type: 'entity'
-            type_options:
-              class: App\Entity\Event
           - property: 'project'
             label: 'Participe au projet'
             type: 'entity'
@@ -54,17 +49,18 @@ easy_admin:
           - { property: 'lastname', label: 'Nom'}
           - { property: 'username', label: 'Nom d''utilisateur'}
           - { property: 'email', type: 'email', label: 'Email'}
+          - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
           - { type: 'group', columns: 5, label: 'Informations Complémentaires', icon: 'code' }
-          - property: 'event'
-            label: 'Inscris à l''évènement'
-            type: 'entity'
-            type_options:
-              class: App\Entity\Event
           - property: 'project'
             label: 'Participe au projet'
             type: 'entity'
             type_options:
               class: App\Entity\Project
+          - property: 'booking'
+            label: 'Participe à l''évènement'
+            type: 'entity'
+            type_options:
+              class: App\Entity\Booking
           - property: 'rank'
             type: 'choice'
             type_options:
@@ -76,10 +72,15 @@ easy_admin:
               expanded: true
               multiple: true
               choices: { 'Utilisateur': '[ROLE_USER]', 'Administrateur': 'ROLE_ADMIN' }
-          - { property: 'enabled', type: 'checkbox', label: 'Active', help: 'Active : Permettre à l''utilisateur de se connecter'}
       search:
-        sort: ['username', 'DESC']
+        sort: ['username', 'ASC']
       list:
+        help: 'Utilisation des filtres : Les rôles sont [ ROLE_ADMIN = Administrateur | ROLE_USER = Utilisateur ]'
+        filters:
+          - { property: 'enabled', label: 'Active' }
+          - { property: 'username', label: 'Pseudo' }
+          - { property: 'email', label: 'Email' }
+          - { property: 'roles', label: 'Rôle', type: 'array'}
         batch_actions:
           severalPromote: { name: severalPromote, label: 'Promouvoir', icon: award }
           severalDemote: { name: severalDemote, label: 'Rétrograder', icon: angle-double-down }
@@ -97,10 +98,10 @@ easy_admin:
           - { property: 'email', label: 'Contact' }
           - { property: 'formatedroles', label: 'Rôle' }
           - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
-          - { property: 'formatedevent', label: 'Évènement'}
-          - { property: 'formatedproject', label: 'Projet'}
+          - { property: 'project', label: 'Projet'}
+          - { property: 'booking', label: 'Évènement'}
         title: 'Liste des %%entity_label%%'
-        sort: ['username', 'DESC']
+        sort: ['username', 'ASC']
       show:
         title: '%%entity_label%% n°%%entity_id%%'
         fields:
@@ -110,6 +111,7 @@ easy_admin:
           - { property: 'email', type: 'email', label: 'Email'}
           - { property: 'formatedroles', label: 'Rôle'}
           - { property: 'formatedrank', label: 'Rang' }
+          - { property: 'project', label: 'Participe au projet' }
+          - { property: 'booking', label: 'Participe à l''évènement' }
           - { property: 'last_login', label: 'Dernière connexion', type: 'datetime' }
-          - { property: 'event', label: 'Inscris à l''évènement'}
           - { property: 'enabled', label: 'Active', help: 'L''utilisateur est autorisé à se connecter'}

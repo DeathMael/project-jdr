@@ -1,6 +1,6 @@
 easy_admin:
   entities:
-    Joueur:
+    Projects:
       class: App\Entity\Project
       controller: App\Controller\ProjectBackendController
       label: 'Projet'
@@ -13,8 +13,7 @@ easy_admin:
             label: 'Fonction'
             type_options:
               expanded: true
-              data: '0'
-              choices: { 'Joueur': '0' }
+              choices: { 'Maître du Jeu': '1', 'Joueur': '0' }
       edit:
         title: 'Modifier le %%entity_label%% n°%%entity_id%%'
         fields:
@@ -24,20 +23,21 @@ easy_admin:
             label: 'Fonction'
             type_options:
               expanded: true
-              data: '0'
+              data: '1'
               choices: { 'Joueur': '0', 'Maître du Jeu': '1' }
       search:
         sort: ['id', 'ASC']
       list:
-        dql_filter: 'entity.statute = 0'
+        help: 'Utilisation des filtres : [FONCTIONS] 0 = Joueur | 1 = Maître de Jeu'
         filters:
           - { property: 'id', label: 'Numéro' }
+          - { property: 'statute', label: 'Fonctions' }
           - { property: 'users', label: 'Utilisateurs' }
         batch_actions:
           severalClear: { name: severalClear, label: 'Vider', icon: user-times }
-          severalToggle: { name: severalToggle, label: 'Basculer en Maître de Jeu', icon: sliders-h }
+          severalToggle: { name: severalToggle, label: 'Basculer', icon: sliders-h }
         actions:
-          toggle: { name: toggle, type: method, label: 'basculer en Maître de Jeu', icon: sliders-h }
+          toggle: { name: toggle, type: method, label: 'basculer', icon: sliders-h }
           clear: { name: clear, type: method, label: 'Vider', icon: user-times }
           show: { name: show, type: method, label: 'Plus', icon: eye }
           edit: { name: edit, type: method, label: 'Éditer', icon: pencil }

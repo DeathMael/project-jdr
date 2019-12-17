@@ -1,70 +1,83 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 
-    <style>
-        body {background-image: url({{ asset('media/home.jpg') }});
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-        }
-        
-        .card{background:rgba(33,33,33,0.7);
-            border-radius: 25px;}
-    </style>
+{% block title %}Connexion{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        body {
+            background-color: #212121;
+        }
+        span {
+            color: #46ED58;
+        }
+        .lienF {
+            color: #46ED58;
+            text-decoration: none;
+        }
+        label, h1, button{
+            color: white !important;
+        }
+        label{
+            margin-right: 20px;
+        }
+        .text-right{
+            margin-right: 45%;
+        }
+        .button{
+            margin-left: 29%;
+        }
+        .reduce{
+            padding-left:20%;
+            padding-right: 20%;
+        }
+        form{
+            background-color: #6c757d;
+        }
+        #link{
+            color: #7db9da;
+        }
+    </style>
 {% endblock %}
-{% block title %}Se connecter{% endblock %}
 
 {% block body %}
-        <div class="container mb-5 mt-5">
+<div class="container mb-5 reduce">
+    <form method="post" class="p-5 mt-5 rounded-lg">
+        {% if app.user %}
+            <p class="mb-3">
+               Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </p>
+        {% endif %}
 
-        <div class="row">
-        <!-- Grid row -->
+        <h1 class="h3 mb-5 font-weight-normal">Se connecter</h1>
+        <label for="inputUsername">Pseudo</label>
+        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-4" required autofocus>
+        <label for="inputPassword">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
+        <p class="mt-4"><a id="link" href="{{ path('fos_user_resetting_request') }}" >Mot de passe oublié</a></p>
 
-        <div class="col-md-6 offset-md-3">
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
 
-            <div class="card text-white">
+        {% if error %}
+            <p class="alert alert-danger mt-5">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+        {% endif %}
 
-                <div class="card-body mx-4">
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
 
-                        <form method="post" class="text-center">
-                            {% if error %}
-                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
-
-                            {% if app.user %}
-                                <div class="mb-5">
-                                   Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                                </div>
-                            {% endif %}
-
-                            <h1 class="h3 mb-5 font-weight-normal">Se connecter</h1>
-                                <label for="inputUsername">Nom</label>
-                                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-4" required autofocus>
-                                <label for="inputPassword">Mot de Passe</label>
-                                <input type="password" name="password" id="inputPassword" class="form-control mb-4" required>
-
-                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                            {#
-                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                                See https://symfony.com/doc/current/security/remember_me.html
-
-                                <div class="checkbox mb-3">
-                                    <label>
-                                        <input type="checkbox" name="_remember_me"> Remember me
-                                    </label>
-                                </div>
-                            #}
-
-                                <button class="btn btn-light btn-block mt-5 mb-5" type="submit">
-                                    Se connecter
-                                </button>
-                            </form>
-                         </div>
-                   </div>
-               </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
             </div>
+        #}
+        <div class="text-center mt-4">
+            <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
         </div>
+    </form>
+</div>
+
 {% endblock %}

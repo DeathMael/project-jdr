@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="" />
+    <list default="true" id="d259a380-956b-46c6-a04a-9ec0a1ed3f86" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookingBackendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectBackendController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserBackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserBackendController.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,16 +197,24 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/bundles/FOSUserBundle" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\GitHub\project-jdr\public" />
-      <recent name="C:\xampp\htdocs\GitHub\project-jdr\src\Controller" />
-      <recent name="C:\xampp\htdocs\GitHub\project-jdr\templates\equipe" />
-      <recent name="C:\xampp\htdocs\GitHub\project-jdr\templates" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\public\custom" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle\views" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle\views" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle\views\ChangePassword" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\FOSUserBundle" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\bundles\FOSUserBundle\ChangePassword" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\src\Resources\views" />
+      <recent name="C:\Users\Vuill\Desktop\project-jdr\templates\ChangePassword" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -232,13 +245,14 @@
       <workItem from="1575360042948" duration="26128000" />
       <workItem from="1575446903415" duration="26641000" />
       <workItem from="1575533058145" duration="2258000" />
-      <workItem from="1575541520926" duration="14936000" />
-      <workItem from="1575620153094" duration="17650000" />
-      <workItem from="1575887923796" duration="18000" />
-      <workItem from="1576481668524" duration="1341000" />
-      <workItem from="1576568471710" duration="1158000" />
-      <workItem from="1576569853816" duration="565000" />
-      <workItem from="1576570633041" duration="753000" />
+      <workItem from="1575541345258" duration="1836000" />
+      <workItem from="1575747171527" duration="10924000" />
+      <workItem from="1576328091393" duration="9688000" />
+      <workItem from="1576418442463" duration="137000" />
+      <workItem from="1576418756432" duration="8127000" />
+      <workItem from="1576436692412" duration="967000" />
+      <workItem from="1576438549761" duration="4826000" />
+      <workItem from="1576520579012" duration="6785000" />
     </task>
     <servers />
   </component>

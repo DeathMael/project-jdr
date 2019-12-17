@@ -1,13 +1,15 @@
 easy_admin:
   design:
     assets:
-      css:
-        - 'bundles/easyadmin/custom.css'
       favicon:
-        path: '/bundles/easyadmin/images/projet/Logo Taliesin.webp'
+        path: '/media/Logo Taliesin.webp'
         mime_type: 'image/webp'
     menu:
-      - label: 'Entités'
+      - label: 'Non Filtré'
+      - { label: 'Tous les utilisateurs', icon: 'users', entity: 'Users' }
+      - { label: 'Tous les projets', icon: 'project-diagram', entity: 'Projects' }
+      - { label: 'Tous les évènements', icon: 'calendar-alt', entity: 'Booking' }
+      - label: 'Filtré'
       - label: 'Utilisateurs'
         icon: 'users'
         children:
@@ -21,7 +23,7 @@ easy_admin:
           - { label: 'Joueur', icon: 'gamepad', entity: 'Joueur'}
       - label: 'Site Web'
       - { label: 'Accueil', route: 'home', icon: 'home' }
-      - { label: 'Projet Oddyssey', route: 'home', icon: 'flask' }
-      - { label: 'L''équipe', route: 'home', icon: 'user-friends' }
-      - { label: 'Planning', route: 'home', icon: 'calendar-check' }
+      - { label: 'Projet Oddyssey', route: 'project_index', icon: 'flask' }
+      - { label: 'L''équipe', route: 'equipe_index', icon: 'user-friends' }
+      - { label: 'Planning', route: 'booking_calendar', icon: 'calendar-check' }
       - {label: 'Analytics', url: 'https://analytics.google.com/', icon: 'line-chart'}

@@ -3,18 +3,27 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\NewPasswordType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
  */
 class UserController extends AbstractController
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -63,23 +72,33 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user->setPassword($this->passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('password')->getData()
+                ));
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('success', 'Vos informations ont été enregistrés !');
+                return $this->redirectToRoute('home');
+            }
+            if ($user->getId()!=$this->getUser()->getId()) {
+                $this->addFlash('warning', 'Vous n\'êtes pas autorisé à accéder à cette page !');
+                return $this->redirect($this->generateUrl('user_edit', ['id' => $this->getUser()->getId()]));
+            }
+            else {
+                return $this->render('user/edit.html.twig', [
+                    'user' => $user,
+                    'form' => $form->createView()
+                ]);
+            }
     }
 
+
     /**
-     * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @Route("/{id}", name="user_delete", methods={"POST"})
      */
     public function delete(Request $request, User $user): Response
     {
@@ -89,6 +108,6 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('home');
     }
 }

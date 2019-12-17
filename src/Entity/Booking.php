@@ -191,7 +191,7 @@ class Booking {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(): self
     {
         $this->updated_at = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
 
@@ -208,5 +208,10 @@ class Booking {
         $this->created_at = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title.' le '.date_format($this->beginAt, 'd/m/Y').' à '.date_format($this->beginAt, 'H:i');
     }
 }

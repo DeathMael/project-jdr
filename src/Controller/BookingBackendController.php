@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Controller;
 
-use App\Entity\Project;
+use App\Entity\Booking;
 use App\Entity\User;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
@@ -12,7 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Exception\EntityRemoveException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProjectBackendController extends EasyAdminController
+class BookingBackendController extends EasyAdminController
 {
     /**
      * The method that is executed when the user performs a 'new' action on an entity.
@@ -30,17 +29,40 @@ class ProjectBackendController extends EasyAdminController
         $newForm = $this->executeDynamicMethod('create<EntityName>NewForm', [$entity, $fields]);
         $newForm->handleRequest($this->request);
         if ($newForm->isSubmitted() && $newForm->isValid()) {
-            $this->processUploadedFiles($newForm);
-            $users='';
-            if ($entity instanceof Project)
-                foreach ($entity->getUsers() as $key => $value) {
-                    if ($value->getProject()!=null)
-                        $users.=$value->getUsername().' ,';
-                    $value->setProject($entity);
+            if (strtotime(date_format($entity->getBeginAt(), 'd-m-Y H:i:s')) < time()) {
+                $this->addFlash('error', 'La date de début de l\'évènement '.date_format($entity->getBeginAt(), 'd/m/Y H:i').' ne peut être antérieur à aujourd\'hui !');
+                return $this->redirectToRoute('easyadmin', array(
+                    'action' => 'new',
+                    'entity' => $this->request->query->get('entity'),
+                ));
+            }
+            $class = $this->entity['class'];
+            $em = $this->getDoctrine()->getManagerForClass($class);
+            $ids = $this->getDoctrine()->getRepository(Booking::class)->findAll();
+            foreach ($ids as $id) {
+                $event = $em->find($class, $id);
+                if ($entity!=$event && $entity->getTitle() == $event->getTitle()) {
+                    $this->addFlash('error', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
+                    return $this->redirectToRoute('easyadmin', array(
+                        'action' => 'new',
+                        'entity' => $this->request->query->get('entity'),
+                    ));
                 }
-            $this->addFlash('success', 'Le projet '.$entity->getStatuteType() . ' a été ajouté avec succès !');
+            }
+            $entity->setCreatedAt();
+            $users='';
+            if ($entity instanceof Booking)
+                foreach ($entity->getUsers() as $key => $value) {
+                    if ($value->getBooking()!=null) {
+                        $users.=$value->getUsername().' ,';
+                        $value->getBooking()->setUpdatedAt();
+                    }
+                    $value->setBooking($entity);
+                }
+            $this->addFlash('success', 'L\'évènement '.$entity->getTitle() . ' a été ajouté avec succès !');
             if ($users!='')
-                $this->addFlash('warning', 'Les utilisateurs : '.$users.' ont quittés leurs projets respectifs !');
+                $this->addFlash('warning', 'Les utilisateurs : '.$users.' ont quittés leurs évènements respectifs ! Ces évènements ont été mis à jour.');
+            $this->processUploadedFiles($newForm);
             $this->dispatch(EasyAdminEvents::PRE_PERSIST, ['entity' => $entity]);
             $this->executeDynamicMethod('persist<EntityName>Entity', [$entity, $newForm]);
             $this->dispatch(EasyAdminEvents::POST_PERSIST, ['entity' => $entity]);
@@ -96,34 +118,51 @@ class ProjectBackendController extends EasyAdminController
 
         $editForm->handleRequest($this->request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            if ($entity instanceof Project) {
+            if ($entity instanceof Booking) {
+                $class = $this->entity['class'];
+                $em = $this->getDoctrine()->getManagerForClass($class);
+                $ids = $this->getDoctrine()->getRepository(Booking::class)->findAll();
+                foreach ($ids as $id) {
+                    $event = $em->find($class, $id);
+                    if ($entity!=$event && $entity->getTitle() == $event->getTitle()) {
+                        $this->addFlash('error', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
+                        return $this->redirectToRoute('easyadmin', array(
+                            'action' => 'edit',
+                            'id' => $this->request->query->get('id'),
+                            'entity' => $this->request->query->get('entity'),
+                        ));
+                    }
+                }
                 $em = $this->getDoctrine()->getManagerForClass(User::class);
                 $ids = $this->getDoctrine()->getRepository(User::class)->findAll();
                 foreach ($ids as $id) {
                     $user = $em->find(User::class, $id);
-                    $user->setProject(null);
+                    $user->setBooking(null);
                 }
-                $class = $this->entity['class'];
                 $em = $this->getDoctrine()->getManagerForClass($class);
-                $ids = $this->getDoctrine()->getRepository(Project::class)->findAll();
+                $ids = $this->getDoctrine()->getRepository(Booking::class)->findAll();
                 foreach ($ids as $id) {
-                    $project = $em->find($class, $id);
-                    if ($project instanceof Project && $project!=$entity)
-                        foreach ($project->getUsers() as $key=>$value) {
-                            $value->setProject($project);
+                    $event = $em->find($class, $id);
+                    if ($event instanceof Booking && $event!=$entity)
+                        foreach ($event->getUsers() as $key=>$value) {
+                            $value->setBooking($event);
                         }
                 }
-                $users='';
-                foreach ($entity->getUsers() as $key => $value) {
-                    if ($value->getProject()!=null)
-                        $users.=$value->getUsername().' ,';
-                    $value->setProject($entity);
+                if ($entity instanceof Booking) {
+                    $users='';
+                    foreach ($entity->getUsers() as $key => $value) {
+                        if ($value->getBooking()!=null) {
+                            $users.=$value->getUsername().' ,';
+                            $value->getBooking()->setUpdatedAt();
+                        }
+                        $value->setBooking($entity);
+                    }
+                    $entity->setUpdatedAt();
+                    $this->addFlash('success', 'L\'évènement ' . $entity->getTitle() . ' a été modifié avec succcès !');
+                    if ($users!='')
+                        $this->addFlash('warning', 'Les utilisateurs : '.$users.' ont quittés leurs évènements respectifs ! Ces évènements ont été mis à jour.');
                 }
-                $this->addFlash('success', 'Le projet ' . $entity->getStatuteType().' n°'.$entity->getId() . ' a été modifié avec succcès !');
-                if ($users!='')
-                    $this->addFlash('warning', 'Les utilisateurs : '.$users.' ont quittés leurs projets respectifs !');
             }
-
             $this->processUploadedFiles($editForm);
             $this->dispatch(EasyAdminEvents::PRE_UPDATE, ['entity' => $entity]);
             $this->executeDynamicMethod('update<EntityName>Entity', [$entity, $editForm]);
@@ -161,23 +200,22 @@ class ProjectBackendController extends EasyAdminController
             $entity = $easyadmin['item'];
 
             $this->dispatch(EasyAdminEvents::PRE_REMOVE, ['entity' => $entity]);
-            if ($entity instanceof Project)
+            if ($entity instanceof Booking)
                 if (count($entity->getUsers())>0)
                 {
                     $users='';
                     foreach ($entity->getUsers() as $key=>$value) {
-                        $users.=$value->getUsername().' ,';
-                        $value->setProject(null);
+                        $users.=$value->getUsername().', ';
+                        $value->setBooking(null);
                     }
-                    $this->addFlash('warning', 'Les utilisateurs : '.$users.' étaient enregistrés sur ce projet, ils n\'appartiennent plus à aucun projet !');
-                    return $this->redirectToReferrer();
+                    $this->addFlash('warning', 'Les utilisateurs : '.$users.' étaient enregistrés sur cet évènement, ils n\'appartiennent plus à aucun évènement !');
                 }
             try {
                 $this->executeDynamicMethod('remove<EntityName>Entity', [$entity, $form]);
             } catch (ForeignKeyConstraintViolationException $e) {
                 throw new EntityRemoveException(['entity_name' => $this->entity['name'], 'message' => $e->getMessage()]);
             }
-            $this->addFlash('success', 'Le projet '.$entity->getStatuteType().' n°'.$entity->getId().' a été supprimé avec succès !');
+            $this->addFlash('success', 'L\'évènement '.$entity->getTitle().' a été supprimé avec succès !');
             $this->dispatch(EasyAdminEvents::POST_REMOVE, ['entity' => $entity]);
         }
 
@@ -199,72 +237,40 @@ class ProjectBackendController extends EasyAdminController
         foreach ($entities as $entity) {
             if (count($entity->getUsers())>0) {
                 $full.=$entity->getTitle().', ';
-                if ($entity instanceof Project)
+                if ($entity instanceof Booking)
                     foreach ($entity->getUsers() as $key=>$value)
-                        $value->setProject(null);
+                        $value->setBooking(null);
             }
             else {
-                $empty.=$entity->getStatuteType().' n°'.$entity->getId().', ';
+                $empty.=$entity->getTitle().', ';
             }
             $this->em->remove($entity);
         }
         if ($full!='')
-            $this->addFlash('warning', 'Les projets : '.$full.' possèdaient des utilisateurs, ces utilisateurs ne possèdent désormais plus de projet !');
-        $this->addFlash('success', 'Tous Les projets sélectionnés ont été supprimés avec succès !');
+            $this->addFlash('warning', 'Les évènements : '.$full.' possèdaient des utilisateurs, ces utilisateurs ne possèdent désormais plus d\'évènement !');
+        $this->addFlash('success', 'Tous Les évènements sélectionnés ont été supprimés avec succès !');
         $this->em->flush();
     }
 
     public function clearAction()
     {
         $id = $this->request->query->get('id');
-        $entity = $this->em->getRepository(Project::class)->find($id);
+        $entity = $this->em->getRepository(Booking::class)->find($id);
         if(count($entity->getUsers())>0) {
             $users='';
             foreach ($entity->getUsers() as $key=>$user)
             {
                 $entity->removeUser($user);
-                $users.=$user->getUsername().' ,';
+                $users.=$user->getUsername().', ';
             }
             $this->em->flush();
-            $this->addFlash('success', 'Les utilisateurs : '.$users.'ont été retirés du Projet '.$entity->getStatuteType().' !');
+            $this->addFlash('success', 'Les utilisateurs : '.$users.'ont été retirés de l\'évènement '.$entity->getTitle().' !');
         }
-       else $this->addFlash('error', 'Le projet '.$entity->getStatuteType().' ne contient aucun utilisateur !');
+        else $this->addFlash('error', 'L\'évènement '.$entity->getTitle().' ne contient aucun utilisateur !');
         return $this->redirectToRoute('easyadmin', array(
             'action' => 'list',
             'entity' => $this->request->query->get('entity'),
         ));
-
-    }
-
-    public function toggleAction()
-    {
-        $id = $this->request->query->get('id');
-        $entity = $this->em->getRepository(Project::class)->find($id);
-        $before=$entity->getStatuteType();
-        if ($entity->getStatute()==0)
-            $entity->setStatute(1);
-        else $entity->setStatute(0);
-        $this->addFlash('success', 'Le projet est passé de '.$before.' a '.$entity->getStatuteType().' !');
-        $this->em->flush();
-
-        return $this->redirectToRoute('easyadmin', array(
-            'action' => 'list',
-            'entity' => $this->request->query->get('entity'),
-        ));
-    }
-
-    public function SeveralToggleBatchAction(array $ids)
-    {
-        $class = $this->entity['class'];
-        $em = $this->getDoctrine()->getManagerForClass($class);
-        foreach ($ids as $id) {
-            $project = $em->find($class, $id);
-            if ($project->getStatute()==0)
-                $project->setStatute(1);
-            else $project->setStatute(0);
-        }
-        $this->addFlash('success', 'Tous les projets sélectionnés ont changé de catégories !');
-        $this->em->flush();
     }
 
     public function SeveralClearBatchAction(array $ids)
@@ -274,22 +280,21 @@ class ProjectBackendController extends EasyAdminController
         $uncleared='';
         $cleared='';
         foreach ($ids as $id) {
-            $project = $em->find($class, $id);
-            if (count($project->getUsers())>0) {
-                foreach ($project->getUsers() as $key=>$user)
+            $event = $em->find($class, $id);
+            if (count($event->getUsers())>0) {
+                foreach ($event->getUsers() as $key=>$user)
                 {
-                    $project->removeUser($user);
+                    $event->removeUser($user);
                 }
-            $cleared.='n°'.$project->getId().' ,';
+                $cleared.=$event->getTitle().', ';
             }
-            else $uncleared.='n°'.$project->getId().' ,';
+            else $uncleared.=$event->getTitle().', ';
         }
         if ($uncleared!='') {
-            $this->addFlash('error', 'Les projets : '.$uncleared.' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
-            $this->addFlash('success', 'Les projets : '.$cleared.' ont pu être vidé !');
+            $this->addFlash('error', 'Les évènements : '.$uncleared.' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
+            $this->addFlash('success', 'Les évènements : '.$cleared.' ont pu être vidé !');
         }
-
-        else $this->addFlash('success', 'Tous les projets sélectionnés ont été vidé de leurs utilisateurs !');
+        else $this->addFlash('success', 'Tous les évènements sélectionnés ont été vidé de leurs utilisateurs !');
         $this->em->flush();
     }
 }

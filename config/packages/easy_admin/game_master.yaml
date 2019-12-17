@@ -1,7 +1,6 @@
 easy_admin:
   entities:
     Maitre_du_jeu:
-      help: 'Attention : Pour supprimer un projet, vous devez retirer les utilisateurs y participants'
       class: App\Entity\Project
       controller: App\Controller\ProjectBackendController
       label: 'Projet'
@@ -28,11 +27,15 @@ easy_admin:
               data: '1'
               choices: { 'Joueur': '0', 'Maître du Jeu': '1' }
       search:
-        sort: ['id', 'DESC']
+        sort: ['id', 'ASC']
       list:
         dql_filter: 'entity.statute = 1'
+        filters:
+          - { property: 'id', label: 'Numéro' }
+          - { property: 'users', label: 'Utilisateurs' }
         batch_actions:
           severalClear: { name: severalClear, label: 'Vider', icon: user-times }
+          severalToggle: { name: severalToggle, label: 'Basculer en Joueur', icon: sliders-h }
         actions:
           toggle: { name: toggle, type: method, label: 'basculer en Joueur', icon: sliders-h }
           clear: { name: clear, type: method, label: 'Vider', icon: user-times }
@@ -45,7 +48,7 @@ easy_admin:
           - { property: 'statutetype', label: 'Fonction' }
           - { property: 'users', label: 'Utilisateurs' }
         title: 'Liste des %%entity_label%%s'
-        sort: ['id', 'DESC']
+        sort: ['id', 'ASC']
       show:
         title: '%%entity_label%% n°%%entity_id%%'
         fields:
@@ -56,6 +59,4 @@ easy_admin:
       form:
         fields:
           - { type: 'group', columns: 6, label: 'Joueurs', icon: 'users' }
-          - property: 'users'
-            type: 'easyadmin_autocomplete'
-            label: 'Participants'
+          - { property: 'users', label: 'Participants' }

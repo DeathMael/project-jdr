@@ -1,13 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block stylesheets %}
+    <style>
+        body {
+            background-color: #212121;
+        }
+        span {
+            color: #46ED58;
+        }
+        .lienF {
+            color: #46ED58;
+            text-decoration: none;
+        }
+        label, h1, button{
+            color: white !important;
+        }
+        label{
+            margin-right: 20px;
+        }
+        .text-right{
+            margin-right: 45%;
+        }
+        .button{
+            margin-left: 29%;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Compte de {{ app.user.username }}{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
-
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    <h1 class="text-center my-5">Modifier les informations du compte</h1>
+    {{ form_start(form) }}
+    <div class="container mt-5">
+        <div class="row text-right">
+            <div class="col-md-12">{{form_row(form.username)}}</div>
+            <div class="col-md-12">{{form_row(form.email)}}</div>
+            <div class="col-md-12">{{form_row(form.lastname)}}</div>
+            <div class="col-md-12">{{form_row(form.firstname)}}</div>
+            <div class="col-md-12">{{form_row(form.password)}}</div>
+        </div>
+        <div class="row mt-5 text-center button">
+            <div class="col-md-2"><a class="btn btn-link btn-light" href="{{ path('home') }}">Annuler</a></div>
+            {{ form_widget(form) }}
+            <div class="col-md-2"><button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button></div>
+        </div>
+    </div>
+    <div>
+        <div hidden class="col-md-12">{{ form_rest(form) }}</div>
+    </div>
+    {{ form_end(form) }}
+    <div id="delete" class="offset-5 col-md-2 mr-3">{{ include('user/_delete_form.html.twig') }}</div>
 {% endblock %}
