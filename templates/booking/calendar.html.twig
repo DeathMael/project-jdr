@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('booking_new') }}">Create new booking</a>
+    <a href="{{ path('booking_new') }}">Créer un nouvel évènement</a>
 
-    <div id="calendar-holder"></div>
+    <div class="container"><div id="calendar-holder"></div></div>
 {% endblock %}
 
 {% block stylesheets %}
@@ -19,13 +19,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
     <script src="fullcalendar/core/main.js"></script>
     <script src="fullcalendar/google-calendar/main.js"></script>
+    <script src='fullcalendar/locale-all.js'></script>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', () => {
+            var initialLocaleCode = 'fr';
+            document.addEventListener('DOMContentLoaded', () => {
             var calendarEl = document.getElementById('calendar-holder');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-
-                height: 750,
+                locale: initialLocaleCode,
+                contentHeight: 750,
                 defaultView: 'dayGridMonth',
                 editable: true,
                 eventSources: [
@@ -41,16 +43,36 @@
                     },
 
                 ],
+                customButtons: {
+                    sync: {
+                        text: 'sync',
+                        click: function() {
+                            window.location.replace("../project");
+                        }
+                    }
+                },
                 header: {
-                    left: 'prev,next today',
+                    left: 'prev,next today sync',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
+                buttonText: {
+
+                today:    'aujourd\'hui',
+                month:    'mois',
+                week:     'semaine',
+                day:      'jour',
+                list:     'liste'
+        },
+                lang:   'fr',
                 plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'googleCalendarPlugin' ], // https://fullcalendar.io/docs/plugin-index
                 googleCalendarApiKey: 'AIzaSyCs6eOxw1giEc4J5PHwWJbF0dR_YlWgUX8',
-                events: {
-                googleCalendarId: '5n7hqradvrj6so45ghg28ifpd8@group.calendar.google.com'
-                },
+                events:[{
+                    googleCalendarId: '5n7hqradvrj6so45ghg28ifpd8@group.calendar.google.com',
+                    eventBackgroundColor: '#212121',
+                    rendering: 'background',
+
+                }],
 
                 timeZone: 'UTC',
             });
