@@ -27,6 +27,8 @@ class BookingBackendController extends EasyAdminController {
 		$fields = $this->entity['new']['fields'];
 		$newForm = $this->executeDynamicMethod('create<EntityName>NewForm', [$entity, $fields]);
 		$newForm->handleRequest($this->request);
+
+		//Appel du service créé pour interragir avec la BDD google calendar
 		$service = CalendarService::service();
 		if ($newForm->isSubmitted() && $newForm->isValid()) {
 			if (strtotime(date_format($entity->getBeginAt(), 'd-m-Y H:i:s')) < time()) {
@@ -50,8 +52,9 @@ class BookingBackendController extends EasyAdminController {
 				}
 			}
 
+			//définition du calendar ID attendu par google
 			$calendarId = 'primary';
-
+			//On rentre les données attendue avec celle de notre entity
 			$gevent = new \Google_Service_Calendar_Event([
 				'summary' => $entity->getTitle(),
 				'description' => $entity->getDescription(),
@@ -142,7 +145,7 @@ class BookingBackendController extends EasyAdminController {
 				$ids = $this->getDoctrine()->getRepository(Booking::class)->findAll();
 				foreach ($ids as $id) {
 					$event = $em->find($class, $id);
-					if ($entity != $event && $entity->getTitle() == $event->getTitle()) {
+					if ($entity != $event && $entity->getBeginAt() == $event->getBeginAt()) {
 						$this->addFlash('error', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
 						return $this->redirectToRoute('easyadmin', array(
 							'action' => 'edit',
@@ -151,6 +154,22 @@ class BookingBackendController extends EasyAdminController {
 						));
 					}
 				}
+
+				$service = CalendarService::service();
+
+				$gevent = $service->events->get('primary', $entity->getGoogleid());
+
+				$gevent = new \Google_Service_Calendar_Event([
+					'summary' => $entity->getTitle(),
+					'description' => $entity->getDescription(),
+					'start' => ['dateTime' => date_format($entity->getBeginAt(), "Y-m-d\TH:i:s"),
+						'timeZone' => 'Europe/Paris'],
+					'end' => ['dateTime' => date_format($entity->getEndAt(), "Y-m-d\TH:i:s"),
+						'timeZone' => 'Europe/Paris'],
+				]);
+
+				$updatedEvent = $service->events->update('primary', $entity->getGoogleid(), $gevent);
+
 				$em = $this->getDoctrine()->getManagerForClass(User::class);
 				$ids = $this->getDoctrine()->getRepository(User::class)->findAll();
 				foreach ($ids as $id) {
@@ -173,11 +192,9 @@ class BookingBackendController extends EasyAdminController {
 					foreach ($entity->getUsers() as $key => $value) {
 						if ($value->getBooking() != null) {
 							$users .= $value->getUsername() . ' ,';
-							$value->getBooking()->setUpdatedAt();
 						}
 						$value->setBooking($entity);
 					}
-					$entity->setUpdatedAt();
 					$this->addFlash('success', 'L\'évènement ' . $entity->getTitle() . ' a été modifié avec succcès !');
 					if ($users != '') {
 						$this->addFlash('warning', 'Les utilisateurs : ' . $users . ' ont quittés leurs évènements respectifs ! Ces évènements ont été mis à jour.');
@@ -240,6 +257,9 @@ class BookingBackendController extends EasyAdminController {
 			$this->addFlash('success', 'L\'évènement ' . $entity->getTitle() . ' a été supprimé avec succès !');
 			$this->dispatch(EasyAdminEvents::POST_REMOVE, ['entity' => $entity]);
 		}
+
+		$service = CalendarService::service();
+		$service->events->delete('primary', $entity->getGoogleid());
 
 		$this->dispatch(EasyAdminEvents::POST_DELETE);
 
