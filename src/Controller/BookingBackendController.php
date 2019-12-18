@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 class BookingBackendController extends EasyAdminController {
 	/**
 	 * The method that is executed when the user performs a 'new' action on an entity.
-	 *
 	 * @return Response|RedirectResponse
 	 */
 	protected function newAction() {
