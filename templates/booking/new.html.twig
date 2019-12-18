@@ -1,11 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends '@!EasyAdmin/default/layout.html.twig' %}
 
 {% block title %}Nouvel événement{% endblock %}
 
 {% block body %}
-    <h1>Nouvel événement</h1>
+<div class="container mb-5 mt-5">
 
-    {{ include('booking/_form.html.twig') }}
-	<a href="{{ path('booking_new') }}">Créer un nouvel événement</a>
-    <a href="{{ path('booking_index') }}">Retour à la liste</a>
+    <div class="row">
+        <!-- Grid row -->
+
+        <div class="col-md-6 offset-md-3">
+
+            <div class="card text-white mt-5">
+                    <h1 class="card-title text-center">Nouvel événement</h1>
+                <div class="card-body mx-4 text-center">
+                    {{ include('booking/_form.html.twig') }}
+                    <a class="btn btn-dark" href="{{ path('booking_new') }}">Créer un nouvel événement</a>
+                    <a class="btn btn-dark" href="{{ path('booking_index') }}">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

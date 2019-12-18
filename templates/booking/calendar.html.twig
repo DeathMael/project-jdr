@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('booking_new') }}">Créer un nouvel évènement</a>
+    <a href="{{ path('easyadmin', {entity: 'Booking', action: 'new'}) }}">Créer un nouvel évènement</a>
 
     <div class="container"><div id="calendar-holder"></div></div>
 {% endblock %}
