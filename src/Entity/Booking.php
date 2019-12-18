@@ -66,9 +66,21 @@ class Booking {
 	 */
 	private $googleid;
 
+<<<<<<< Updated upstream
 	public function __construct() {
 		$this->users = new ArrayCollection();
 	}
+=======
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $googleid;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+>>>>>>> Stashed changes
 
 	public function getId():  ? int {
 		return $this->id;
@@ -104,6 +116,7 @@ class Booking {
 		return $this;
 	}
 
+<<<<<<< Updated upstream
 	/**
 	 * Returns an authorized API client.
 	 * @return Google_Client the authorized client object
@@ -229,4 +242,134 @@ class Booking {
 
 		return $this;
 	}
+=======
+            /**
+             * Returns an authorized API client.
+             * @return Google_Client the authorized client object
+             */
+            public function getClient() {
+             $client = new \Google_Client();
+             $client->setApplicationName('Google Calendar API PHP Quickstart');
+              $client->setScopes(Google_Service_Calendar::CALENDAR);
+              $client->setAuthConfig('credentials.json');
+              $client->setAccessType('offline');
+               $client->setPrompt('select_account consent');
+                                                   
+               // Load previously authorized token from a file, if it exists.
+                // The file token.json stores the user's access and refresh tokens, and is
+                // created automatically when the authorization flow completes for the first
+                // time.
+                $tokenPath = 'token.json';
+                if (file_exists($tokenPath)) {
+                    $accessToken = json_decode(file_get_contents($tokenPath), true);
+                    $client->setAccessToken($accessToken);
+                }
+                                                   
+                // If there is no previous token or it's expired.
+                if ($client->isAccessTokenExpired()) {
+                    // Refresh the token if possible, else fetch a new one.
+                    if ($client->getRefreshToken()) {
+                        $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+                    } else {
+                        // Request authorization from the user.
+                        $authUrl = $client->createAuthUrl();
+                        printf("Open the following link in your browser:\n%s\n", $authUrl);
+                        print 'Enter verification code: ';
+                        $authCode = trim(fgets(STDIN));
+                                                   
+                        // Exchange authorization code for an access token.
+                        $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+                        $client->setAccessToken($accessToken);
+                                                   
+                        // Check to see if there was an error.
+                        if (array_key_exists('error', $accessToken)) {
+                            throw new Exception(join(', ', $accessToken));
+                        }
+                    }
+                    // Save the token to a file.
+                    if (!file_exists(dirname($tokenPath))) {
+                        mkdir(dirname($tokenPath), 0700, true);
+                    }
+                    file_put_contents($tokenPath, json_encode($client->getAccessToken()));
+                }
+                return $client;
+            }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setBooking($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getBooking() === $this) {
+                $user->setBooking(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(): self
+    {
+        $this->created_at = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
+
+        return $this;
+    }
+
+    public function getGoogleid():  ? string {
+        return $this->googleid;
+    }
+
+    public function setGoogleid(string $googleid) : self{
+        $this->googleid = $googleid;
+
+        return $this;
+    }
+>>>>>>> Stashed changes
 }
