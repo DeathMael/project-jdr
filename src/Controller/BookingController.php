@@ -7,6 +7,7 @@ use App\Form\BookingType;
 use App\Repository\BookingRepository;
 use App\Service\CalendarService;
 use Google_Service_Calendar_Event;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,6 +78,7 @@ class BookingController extends AbstractController {
 
 	/**
 	 * @Route("/calendar", name="booking_calendar", methods={"GET"})
+	 * @IsGranted("ROLE_USER")
 	 */
 	public function calendar(): Response{
 

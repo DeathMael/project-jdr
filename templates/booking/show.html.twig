@@ -8,20 +8,16 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
+                <th>Title</th>
+                <td>{{ booking.title }}</td>
             </tr>
             <tr>
                 <th>BeginAt</th>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>EndAt</th>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ booking.title }}</td>
+                <td>{{ booking.endAt ? booking.endAt|date('d-m-Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -32,7 +28,11 @@
 
     <a href="{{ path('booking_index') }}">back to list</a>
 
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
 
+
     {{ include('booking/_delete_form.html.twig') }}
+
+    {% endif %}
 {% endblock %}
