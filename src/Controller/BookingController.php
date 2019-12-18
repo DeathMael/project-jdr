@@ -153,7 +153,7 @@ dump($client);*/
 	}
 
 	/**
-	 * @Route("/{id}", name="booking_show", methods={"GET"})
+	 * @Route("/show/{id}", name="booking_show", methods={"GET"})
 	 */
 	public function show(Booking $booking): Response {
 		return $this->render('booking/show.html.twig', [
@@ -162,7 +162,7 @@ dump($client);*/
 	}
 
 	/**
-	 * @Route("/{id}/edit", name="booking_edit", methods={"GET","POST"})
+	 * @Route("/edit/{id}", name="booking_edit", methods={"GET","POST"})
 	 */
 	public function edit(Request $request, Booking $booking): Response{
 		$form = $this->createForm(BookingType::class, $booking);

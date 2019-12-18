@@ -1,42 +1,23 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
 
 {% block title %}Connexion{% endblock %}
 
 {% block stylesheets %}
     <style>
-        body {
-            background-color: #212121;
+     
+        body {background-image: url({{ asset('media/home.jpg') }});
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
         }
-        span {
-            color: #46ED58;
-        }
-        .lienF {
-            color: #46ED58;
-            text-decoration: none;
-        }
-        label, h1, button{
-            color: white !important;
-        }
-        label{
-            margin-right: 20px;
-        }
-        .text-right{
-            margin-right: 45%;
-        }
-        .button{
-            margin-left: 29%;
-        }
-        .reduce{
-            padding-left:20%;
-            padding-right: 20%;
-        }
-        form{
-            background-color: #6c757d;
-        }
-        #link{
-            color: #7db9da;
-        }
+
+        .card{background:rgba(33,33,33,0.7);
+            border-radius: 25px;}
+
+
+
+  
     </style>
 {% endblock %}
 
@@ -49,6 +30,19 @@
         <div class="col-md-6 offset-md-3">
 
             <div class="card text-white mt-5">
+                <div class="card-body mx-4">
+
+                    <form method="post" class="text-center">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                    <div class="mb-5">
+                        Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                    </div>
+                    {% endif %}
+
 
         <h1 class="h3 mb-5 font-weight-normal">Se connecter</h1>
         <label for="inputUsername">Pseudo</label>
@@ -57,13 +51,7 @@
         <input type="password" name="password" id="inputPassword" class="form-control" required>
         <p class="mt-4"><a id="link" href="{{ path('fos_user_resetting_request') }}" >Mot de passe oublié</a></p>
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
-
-        {% if error %}
-            <p class="alert alert-danger mt-5">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
-        {% endif %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -75,10 +63,14 @@
                 </label>
             </div>
         #}
-        <div class="text-center mt-4">
-            <button class="btn btn-lg btn-primary" type="submit">Connexion</button>
+        
+            <button class="btn btn-light btn-block mt-5 mb-5" type="submit">Connexion</button>
+        
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
-</div>
+        </div>
+        </div>
 
 {% endblock %}

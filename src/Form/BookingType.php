@@ -20,7 +20,7 @@ class BookingType extends AbstractType {
 
 		$builder
 			->add('beginAt', DateTimeType::class)
-			->add('endAt', DateTiùeType::class)
+			->add('endAt', DateTimeType::class)
 			->add('title', TextType::class)
 			->add('description', TextareaType::class)
 			/*->add('updated_at')

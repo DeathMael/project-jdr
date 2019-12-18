@@ -12,6 +12,7 @@ easy_admin:
           - { property: 'description', label: 'Description' }
           - { type: 'group', columns: 6, label: 'Paramètres', icon: 'users' }
           - { property: 'beginat', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'endat', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - property: 'users'
             label: 'Participants'
       edit:
@@ -22,6 +23,7 @@ easy_admin:
           - { property: 'description', label: 'Description' }
           - { type: 'group', columns: 6, label: 'Paramètres', icon: 'users' }
           - { property: 'beginat', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'endat', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - property: 'users'
             label: 'Participants'
       search:
@@ -31,6 +33,7 @@ easy_admin:
           - { property: 'title', label: 'Titre' }
           - { property: 'description', label: 'Description' }
           - { property: 'beginAt', label: 'Commence le' }
+          - { property: 'endAt', label: 'Fini le' }
         batch_actions:
           severalClear: { name: severalClear, label: 'Vider', icon: user-times }
         actions:
@@ -43,6 +46,7 @@ easy_admin:
           - { property: 'title', label: 'Titre' }
           - { property: 'description', label: 'Description' }
           - { property: 'beginAt', label: 'Commence le ' }
+          - { property: 'endAt', label: 'Fini le ' }
           - property: 'users'
             label: 'Participants'
         title: 'Liste des %%entity_label%%s'
@@ -53,6 +57,7 @@ easy_admin:
           - { property: 'title', label: 'Titre' }
           - { property: 'description', label: 'Description' }
           - { property: 'beginat', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'endat', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - { property: 'createdat', label: 'Créé le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - property: 'users'
             label: 'Participants'
