@@ -54,10 +54,8 @@ class UserBackendController extends EasyAdminController {
 				$entity->getBooking()->setUpdatedAt();
 			}
 
-			dump($entity->getRoles());
 			if ($entity->getRoles() == []) {
 				$entity->addRole('ROLE_USER');
-				dump($entity->getRoles());
 			}
 
 			$this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername() . ' est désormais inscrit en tant qu\'' . $entity->getFormatedRank() . ' !');
