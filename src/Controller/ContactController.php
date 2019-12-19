@@ -53,7 +53,7 @@ class ContactController extends AbstractController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            "secret" => "6Ld9gcgUAAAAADfDNxlg1SOmTz5i48Hwa3v7qgXl", "response" => $recaptcha));
+            "secret" => "6LfbncgUAAAAAGlrWEcPQs1BYHMRfo0KRzRpCzOf", "response" => $recaptcha));
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response);
