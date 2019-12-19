@@ -16,6 +16,10 @@ class ContactType extends AbstractType
             ->add('Nom', TextType::class)
             ->add('Prenom', TextType::class)
             ->add('Email', EmailType::class)
+            ->add('AgreeTerms', CheckboxType::class, [
+                'label'    => 'Cocher si vous acceptez les conditions générale d\'utilisation?',
+                'required' => true,
+            ])
             ->add('Message', TextareaType::class)
         ;
     }
