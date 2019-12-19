@@ -23,24 +23,31 @@ class ContactController extends AbstractController
                 ->setFrom($contactFormData['Email'])
                 ->setTo('taliesincollectif@gmail.com')
                 ->setBody(
-                    $contactFormData['Message'] . '
-            mail de l\'expéditeur: ' . $contactFormData['Email'],
-                    'text/plain'
+                    '<html>'.
+                    '<body>'.
+                    '<p>Nouvelle demande d\'inscription de la part de '.
+                    $contactFormData['Nom'].' '.$contactFormData['Prenom'].' .<br/>
+                    Mail de l\'expéditeur : ' . $contactFormData['Email'].' <br/>
+                   Contenu de la demande : '. $contactFormData['Message'].'</p>
+                    </body>
+                    </html>',
+                    'text/html'
                 );
             $mailer->send($message);
-            //$this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
+            $this->addFlash('success', 'Une nouvelle demande d\'inscription a été envoyé');
 
-            return $this->redirectToRoute('contact');
+            //return $this->redirectToRoute('contact');
         }
         if ($form->isSubmitted() && $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))) {
 
             $this->addFlash(
-                'error',
+                'danger',
                 'Captcha Requis'
             );
         }
         return $this->render('contact/index.html.twig', [
             'email_form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -53,7 +60,7 @@ class ContactController extends AbstractController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            "secret" => "6Ld9gcgUAAAAADfDNxlg1SOmTz5i48Hwa3v7qgXl", "response" => $recaptcha));
+            "secret" => "6LfbncgUAAAAAGlrWEcPQs1BYHMRfo0KRzRpCzOf", "response" => $recaptcha));
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response);
