@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(fields="title", message="Le titre renseigné est déjà pris par un autre évènement !")
  */
 class Booking {
 	/**
@@ -21,23 +23,30 @@ class Booking {
 
 	/**
 	 * @ORM\Column(type="datetime")
-	 * @Assert\NotBlank
-	 * @Assert\GreaterThan("today Europe/Paris")
+     * @Assert\NotNull(message = "La date de début doit être défini !")
+     * @Assert\Type(type="datetime", message = "La date de début doit être une date !")
+	 * @Assert\GreaterThan("today Europe/Paris", message="La date de début ne peut être antérieure à aujourd'hui !")
 	 */
 	private $beginAt;
 
 	/**
 	 * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\Type(type="datetime", message = "La date de début doit être une date !")
 	 * @Assert\Expression(
 	 *     "this.getBeginAt() < this.getEndAt()",
-	 *     message="La date fin ne doit pas être antérieure à la date début"
+	 *     message="La date fin ne doit pas être antérieure à la date début !"
 	 * )
 	 */
 	private $endAt = null;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
-	 * @Assert\NotBlank
+     * @Assert\NotBlank(message = "Le titre doit être défini !")
+     * @Assert\Type(type="string", message = "Le titre doit être une chaîne de caractère !")
+     * @Assert\Length(min = 3, max = 50,
+     *     minMessage = "Le titre doit contenir au moins {{ limit }} caractères !",
+     *     maxMessage = "Le titre doit contenir moins de {{ limit }} caractères !"
+     * )
 	 */
 	private $title;
 
@@ -48,16 +57,28 @@ class Booking {
 
 	/**
 	 * @ORM\Column(type="text", nullable=true)
+     * @Assert\Type(type="string", message = "La description doit être une chaîne de caractère !")
+     * @Assert\Length(min = 3,
+     *     minMessage = "Le nom doit contenir au moins {{ limit }} caractères !"
+     * )
 	 */
 	private $description;
 
 	/**
 	 * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\DateTime
+     * @Assert\GreaterThanOrEqual("today",
+     *     message="La date de création ne doit pas être antérieur à aujourd'hui !"
+     * )
 	 */
 	private $updated_at;
 
 	/**
 	 * @ORM\Column(type="datetime")
+     * @Assert\DateTime
+     * @Assert\GreaterThanOrEqual("today",
+     *     message="La date de modification ne doit pas être antérieur à aujourd'hui !"
+     * )
 	 */
 	private $created_at;
 

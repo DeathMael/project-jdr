@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -24,6 +25,9 @@ class Project
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull(message = "Le statut doit être défini !")
+     * @Assert\Type(type="integer", message = "Le statut doit être un entier !")
+     * @Assert\PositiveOrZero(message="Le statut doit être un entier supérieur ou égal à {{ compared_value }} !")
      */
     private $statute;
 

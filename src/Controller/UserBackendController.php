@@ -26,30 +26,24 @@ class UserBackendController extends EasyAdminController {
 		$newForm = $this->executeDynamicMethod('create<EntityName>NewForm', [$entity, $fields]);
 		$newForm->handleRequest($this->request);
 		if ($newForm->isSubmitted() && $newForm->isValid()) {
-
-			$this->processUploadedFiles($newForm);
-			$class = $this->entity['class'];
-			$em = $this->getDoctrine()->getManagerForClass($class);
-			$ids = $this->getDoctrine()->getRepository(User::class)->findAll();
-			$error = 0;
-			foreach ($ids as $id) {
-				$user = $em->find($class, $id);
-				if ($entity->getUsername() == $user->getUsername()) {
-					$this->addFlash('error', 'Le nom d\'utilisateur ' . $user->getUsername() . ' est déjà pris !');
-					$error++;
-				}
-				if ($entity->getEmail() == $user->getEmail()) {
-					$this->addFlash('error', 'L\'adresse email ' . $user->getEmail() . ' est déjà prise par ' . $user->getUsername() . ' !');
-					$error++;
-				}
-				if ($error > 0) {
-					return $this->redirectToRoute('easyadmin', array(
-						'action' => 'new',
-						'entity' => $this->request->query->get('entity'),
-					));
-				}
-
-			}
+		    $username=preg_replace('/\s+/', '', filter_var($entity->getUsername(), FILTER_SANITIZE_STRING));
+            if (mb_strlen($username)<3) {
+                $this->addFlash('danger', 'Votre nouveau nom d\'utilisateur doit contenir au moins 3 caractères !');
+                return $this->redirectToRoute('easyadmin', array(
+                    'action' => 'new',
+                    'entity' => $this->request->query->get('entity'),
+                ));
+            }
+            $email=preg_replace('/\s+/', '', strtolower(filter_var($entity->getEmail(), FILTER_SANITIZE_EMAIL)));
+            if (mb_strlen($email)<3 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $this->addFlash('danger', 'L\'adresse email saisi est invalide !');
+                return $this->redirectToRoute('easyadmin', array(
+                    'action' => 'new',
+                    'entity' => $this->request->query->get('entity'),
+                ));
+            }
+            $entity->setUsername($username);
+            $entity->setEmail($email);
 			if ($entity->getBooking() != null) {
 				$entity->getBooking()->setUpdatedAt();
 			}
@@ -57,8 +51,9 @@ class UserBackendController extends EasyAdminController {
 			if ($entity->getRoles() == []) {
 				$entity->addRole('ROLE_USER');
 			}
-
 			$this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername() . ' est désormais inscrit en tant qu\'' . $entity->getFormatedRank() . ' !');
+
+            $this->processUploadedFiles($newForm);
 			$this->dispatch(EasyAdminEvents::PRE_PERSIST, ['entity' => $entity]);
 			$this->executeDynamicMethod('persist<EntityName>Entity', [$entity, $newForm]);
 			$this->dispatch(EasyAdminEvents::POST_PERSIST, ['entity' => $entity]);
@@ -105,29 +100,6 @@ class UserBackendController extends EasyAdminController {
 		$editForm->handleRequest($this->request);
 		if ($editForm->isSubmitted() && $editForm->isValid()) {
 			if ($entity instanceof User) {
-				$class = $this->entity['class'];
-				$em = $this->getDoctrine()->getManagerForClass($class);
-				$ids = $this->getDoctrine()->getRepository(User::class)->findAll();
-				$error = 0;
-				foreach ($ids as $id) {
-					$user = $em->find($class, $id);
-					if ($entity != $user && $entity->getUsername() == $user->getUsername()) {
-						$this->addFlash('error', 'Le nom d\'utilisateur ' . $user->getUsername() . ' est déjà pris !');
-						$error++;
-					}
-					if ($entity != $user && $entity->getEmail() == $user->getEmail()) {
-						$this->addFlash('error', 'L\'adresse email ' . $user->getEmail() . ' est déjà prise par ' . $user->getUsername() . ' !');
-						$error++;
-					}
-					if ($error > 0) {
-						return $this->redirectToRoute('easyadmin', array(
-							'action' => 'edit',
-							'id' => $this->request->query->get('id'),
-							'entity' => $this->request->query->get('entity'),
-						));
-					}
-
-				}
 				if ($entity->getBooking() != null) {
 					$entity->getBooking()->setUpdatedAt();
 				}
@@ -173,7 +145,7 @@ class UserBackendController extends EasyAdminController {
 			$entity = $easyadmin['item'];
 			$this->dispatch(EasyAdminEvents::PRE_REMOVE, ['entity' => $entity]);
 			if ($this->getUser() == $entity) {
-				$this->addFlash('error', 'Impossible de supprimer l\'utilisateur ' . $entity->getUsername() . ' car il est actuellement connecté !');
+				$this->addFlash('danger', 'Impossible de supprimer l\'utilisateur ' . $entity->getUsername() . ' car il est actuellement connecté !');
 				return $this->redirectToReferrer();
 			}
 			if ($entity instanceof User) {
@@ -181,13 +153,12 @@ class UserBackendController extends EasyAdminController {
 					$entity->getBooking()->setUpdatedAt();
 				}
 			}
-
-			$this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername() . ' a été supprimé avec succès!');
 			try {
 				$this->executeDynamicMethod('remove<EntityName>Entity', [$entity, $form]);
 			} catch (ForeignKeyConstraintViolationException $e) {
 				throw new EntityRemoveException(['entity_name' => $this->entity['name'], 'message' => $e->getMessage()]);
 			}
+            $this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername() . ' a été supprimé avec succès!');
 			$this->dispatch(EasyAdminEvents::POST_REMOVE, ['entity' => $entity]);
 		}
 		$this->dispatch(EasyAdminEvents::POST_DELETE);
@@ -202,12 +173,12 @@ class UserBackendController extends EasyAdminController {
 			->findBy([$primaryKey => $ids]);
 		foreach ($entities as $entity) {
 			if ($this->getUser() == $entity) {
-				$this->addFlash('error', 'Impossible de supprimer l\'utilisateur ' . $entity->getUsername() . ' car il est actuellement connecté !');
-			} else {
+				$this->addFlash('danger', 'Impossible de supprimer l\'utilisateur ' . $entity->getUsername() . ' car il est actuellement connecté !');
+			}
+			else {
 				if ($entity->getBooking() != null) {
 					$entity->getBooking()->setUpdatedAt();
 				}
-
 				$users .= $entity->getUsername() . ', ';
 				$this->em->remove($entity);
 			}
@@ -215,7 +186,6 @@ class UserBackendController extends EasyAdminController {
 		if ($users != '') {
 			$this->addFlash('success', 'Les utilisateurs : ' . $users . 'ont été supprimés avec succès !');
 		}
-
 		$this->em->flush();
 	}
 
@@ -231,7 +201,7 @@ class UserBackendController extends EasyAdminController {
 			$this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername() . ' a été promu au rang de ' . $entity->getRank());
 			$this->em->flush();
 		} else {
-			$this->addFlash('error', 'Impossible de promouvoir ' . $entity->getUsername() . ', le rang maximal atteignable est ' . $entity->getFormatedRank() . ' !');
+			$this->addFlash('danger', 'Impossible de promouvoir ' . $entity->getUsername() . ', le rang maximal atteignable est ' . $entity->getFormatedRank() . ' !');
 		}
 
 		return $this->redirectToRoute('easyadmin', array(
@@ -252,7 +222,7 @@ class UserBackendController extends EasyAdminController {
 			$this->addFlash('success', 'L\'utilisateur ' . $entity->getUsername() . ' a été rétrogradé au rang de ' . $entity->getFormatedRank());
 			$this->em->flush();
 		} else {
-			$this->addFlash('error', 'Impossible de rétrograder ' . $entity->getUsername() . ', le rang minimal atteignable est ' . $entity->getFormatedRank() . ' !');
+			$this->addFlash('danger', 'Impossible de rétrograder ' . $entity->getUsername() . ', le rang minimal atteignable est ' . $entity->getFormatedRank() . ' !');
 		}
 
 		return $this->redirectToRoute('easyadmin', array(
@@ -280,7 +250,7 @@ class UserBackendController extends EasyAdminController {
 			}
 		}
 		if ($unpromoted != '') {
-			$this->addFlash('error', 'Les utilisateurs ' . $unpromoted . 'n\'ont pas pu être promu !');
+			$this->addFlash('danger', 'Les utilisateurs ' . $unpromoted . 'n\'ont pas pu être promu !');
 			$this->addFlash('success', 'Les utilisateurs ' . $promoted . 'ont pu être promu !');
 		} else {
 			$this->addFlash('success', 'Les utilisateurs sélectionnés ont tous été promu');
@@ -308,7 +278,7 @@ class UserBackendController extends EasyAdminController {
 			}
 		}
 		if ($undemoted != '') {
-			$this->addFlash('error', 'Les utilisateurs ' . $undemoted . 'n\'ont pas pu être retrogradés !');
+			$this->addFlash('danger', 'Les utilisateurs ' . $undemoted . 'n\'ont pas pu être retrogradés !');
 			$this->addFlash('success', 'Les utilisateurs ' . $demoted . 'ont pu être retrogradés !');
 		} else {
 			$this->addFlash('success', 'Les utilisateurs sélectionnés ont tous été rétrogradé');

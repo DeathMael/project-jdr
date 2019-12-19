@@ -228,7 +228,7 @@ class ProjectBackendController extends EasyAdminController
             $this->em->flush();
             $this->addFlash('success', 'Les utilisateurs : '.$users.'ont été retirés du Projet '.$entity->getStatuteType().' !');
         }
-       else $this->addFlash('error', 'Le projet '.$entity->getStatuteType().' ne contient aucun utilisateur !');
+       else $this->addFlash('danger', 'Le projet '.$entity->getStatuteType().' ne contient aucun utilisateur !');
         return $this->redirectToRoute('easyadmin', array(
             'action' => 'list',
             'entity' => $this->request->query->get('entity'),
@@ -285,7 +285,7 @@ class ProjectBackendController extends EasyAdminController
             else $uncleared.='n°'.$project->getId().' ,';
         }
         if ($uncleared!='') {
-            $this->addFlash('error', 'Les projets : '.$uncleared.' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
+            $this->addFlash('danger', 'Les projets : '.$uncleared.' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
             $this->addFlash('success', 'Les projets : '.$cleared.' ont pu être vidé !');
         }
 

@@ -29,10 +29,10 @@ class BookingBackendController extends EasyAdminController {
 		$newForm->handleRequest($this->request);
 
 		//Appel du service créé pour interragir avec la BDD google calendar
-		$service = CalendarService::service();
+		$service = (new \App\Service\CalendarService)->service();
 		if ($newForm->isSubmitted() && $newForm->isValid()) {
 			if (strtotime(date_format($entity->getBeginAt(), 'd-m-Y H:i:s')) < time()) {
-				$this->addFlash('error', 'La date de début de l\'évènement ' . date_format($entity->getBeginAt(), 'd/m/Y H:i') . ' ne peut être antérieur à aujourd\'hui !');
+				$this->addFlash('danger', 'La date de début de l\'évènement ' . date_format($entity->getBeginAt(), 'd/m/Y H:i') . ' ne peut être antérieur à aujourd\'hui !');
 				return $this->redirectToRoute('easyadmin', array(
 					'action' => 'new',
 					'entity' => $this->request->query->get('entity'),
@@ -44,7 +44,7 @@ class BookingBackendController extends EasyAdminController {
 			foreach ($ids as $id) {
 				$event = $em->find($class, $id);
 				if ($entity != $event && $entity->getBeginAt() == $event->getBeginAt()) {
-					$this->addFlash('error', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
+					$this->addFlash('danger', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
 					return $this->redirectToRoute('easyadmin', array(
 						'action' => 'new',
 						'entity' => $this->request->query->get('entity'),
@@ -78,6 +78,8 @@ class BookingBackendController extends EasyAdminController {
 					$value->setBooking($entity);
 				}
 			}
+			$entity->setTitle(filter_var($entity->getTitle(), FILTER_SANITIZE_STRING));
+            $entity->setDescription(filter_var($entity->getDescription(), FILTER_SANITIZE_STRING));
 
 			$this->addFlash('success', 'L\'évènement ' . $entity->getTitle() . ' a été ajouté avec succès !');
 			if ($users != '') {
@@ -146,7 +148,7 @@ class BookingBackendController extends EasyAdminController {
 				foreach ($ids as $id) {
 					$event = $em->find($class, $id);
 					if ($entity != $event && $entity->getBeginAt() == $event->getBeginAt()) {
-						$this->addFlash('error', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
+						$this->addFlash('danger', 'L\'évènement ' . $event->getTitle() . ' existe déjà  !');
 						return $this->redirectToRoute('easyadmin', array(
 							'action' => 'edit',
 							'id' => $this->request->query->get('id'),
@@ -155,7 +157,7 @@ class BookingBackendController extends EasyAdminController {
 					}
 				}
 
-				$service = CalendarService::service();
+				$service = (new \App\Service\CalendarService)->service();
 
 				$gevent = $service->events->get('primary', $entity->getGoogleid());
 
@@ -309,7 +311,7 @@ class BookingBackendController extends EasyAdminController {
 			$this->em->flush();
 			$this->addFlash('success', 'Les utilisateurs : ' . $users . 'ont été retirés de l\'évènement ' . $entity->getTitle() . ' !');
 		} else {
-			$this->addFlash('error', 'L\'évènement ' . $entity->getTitle() . ' ne contient aucun utilisateur !');
+			$this->addFlash('danger', 'L\'évènement ' . $entity->getTitle() . ' ne contient aucun utilisateur !');
 		}
 
 		return $this->redirectToRoute('easyadmin', array(
@@ -336,7 +338,7 @@ class BookingBackendController extends EasyAdminController {
 
 		}
 		if ($uncleared != '') {
-			$this->addFlash('error', 'Les évènements : ' . $uncleared . ' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
+			$this->addFlash('danger', 'Les évènements : ' . $uncleared . ' n\'ont pas pu être vidé car il ne possède pas d\'utilisateurs !');
 			$this->addFlash('success', 'Les évènements : ' . $cleared . ' ont pu être vidé !');
 		} else {
 			$this->addFlash('success', 'Tous les évènements sélectionnés ont été vidé de leurs utilisateurs !');

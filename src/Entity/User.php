@@ -4,11 +4,15 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
+ * @UniqueEntity(fields="email", message="L'adresse email renseigné est déjà prise par un autre utilisateur !")
+ * @UniqueEntity(fields="username", message="Le pseudo renseigné est déjà prise par un autre utilisateur !")
  */
 class User extends BaseUser implements UserInterface {
 	public function __construct() {
@@ -23,16 +27,31 @@ class User extends BaseUser implements UserInterface {
 
 	/**
 	 * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message = "Le nom doit être défini !")
+     * @Assert\Type(type="string", message = "Le nom doit être une chaîne de caractère !")
+     * @Assert\Length(min = 3, max = 50,
+     *     minMessage = "Le nom doit contenir au moins {{ limit }} caractères !",
+     *     maxMessage = "Le nom doit contenir moins de {{ limit }} caractères !"
+     * )
 	 */
 	private $lastname;
 
 	/**
 	 * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message = "Le prénom doit être défini !")
+     * @Assert\Type(type="string", message = "Le prénom doit être une chaîne de caractère !")
+     * @Assert\Length(min = 3, max = 50,
+     *     minMessage = "Le prénom doit contenir au moins {{ limit }} caractères !",
+     *     maxMessage = "Le prénom doit contenir moins de {{ limit }} caractères !"
+     * )
 	 */
 	private $firstname;
 
 	/**
 	 * @ORM\Column(type="integer")
+     * @Assert\NotNull(message = "Le rang doit être défini !")
+     * @Assert\Type(type="integer", message = "Le rang doit être un entier !")
+     * @Assert\PositiveOrZero(message="Le rang doit être un entier supérieur ou égal à {{ compared_value }} !")
 	 */
 	private $rank;
 

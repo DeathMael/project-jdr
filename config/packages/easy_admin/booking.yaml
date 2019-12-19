@@ -11,8 +11,8 @@ easy_admin:
           - { property: 'title', label: 'Titre' }
           - { property: 'description', label: 'Description' }
           - { type: 'group', columns: 6, label: 'Paramètres', icon: 'users' }
-          - { property: 'beginat', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
-          - { property: 'endat', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'beginAt', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'endAt', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - property: 'users'
             label: 'Participants'
       edit:
@@ -22,8 +22,8 @@ easy_admin:
           - { property: 'title', label: 'Titre' }
           - { property: 'description', label: 'Description' }
           - { type: 'group', columns: 6, label: 'Paramètres', icon: 'users' }
-          - { property: 'beginat', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
-          - { property: 'endat', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'beginAt', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text', required: true } }
+          - { property: 'endAt', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - property: 'users'
             label: 'Participants'
       search:
@@ -56,8 +56,8 @@ easy_admin:
         fields:
           - { property: 'title', label: 'Titre' }
           - { property: 'description', label: 'Description' }
-          - { property: 'beginat', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
-          - { property: 'endat', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
-          - { property: 'createdat', label: 'Créé le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'beginAt', label: 'Commence le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'endAt', label: 'Fini le ', type: 'datetime', type_options: { widget: 'single_text' } }
+          - { property: 'createdAt', label: 'Créé le ', type: 'datetime', type_options: { widget: 'single_text' } }
           - property: 'users'
             label: 'Participants'
