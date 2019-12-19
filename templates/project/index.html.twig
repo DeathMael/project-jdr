@@ -126,7 +126,8 @@
                  <p>Si vous voulez nous rejoindre c'est par <a class="lienF" href="{{ path('contact') }}">là</a></p>
         </div>
 
-
+    {% if app.user %}
+        {% if is_granted('ROLE_ADMIN') %}
     <!--Partie Tableau du Jeu-->
 
     <div class="container text-center pt-1">
@@ -136,7 +137,9 @@
                 <tr>
                     <th scope="col">Numéro</th>
                     <th scope="col">Statut choisi</th>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <th>Édition</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -144,6 +147,7 @@
                 <tr>
                     <th scope="row">{{ project.id }}</th>
                          <td>{{ project.statute ? 'Maître de jeu' : 'Joueur' }}</td>
+                         {% if is_granted('ROLE_ADMIN') %}
                         <td>
                             <a href="{{ path("project_edit", {id: project.id}) }}" class="btn btn-light">Éditer</a>
                             <form method="post" action="{{ path('project_delete', {id: project.id}) }}" style="display: inline-block">
@@ -152,6 +156,7 @@
                                 <button class="btn btn-light">Supprimer</button>
                             </form>
                         </td>
+                    {% endif %}
                 </tr>
 
             {% endfor %}
@@ -160,8 +165,8 @@
         </table>
             <a class="btn btn-light" href="{{ path('project_new') }}">Choisir un rôle</a>
     </div>
-
-
+    {% endif %}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
