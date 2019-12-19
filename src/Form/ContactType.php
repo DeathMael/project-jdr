@@ -2,6 +2,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,11 +17,10 @@ class ContactType extends AbstractType
             ->add('Nom', TextType::class)
             ->add('Prenom', TextType::class)
             ->add('Email', EmailType::class)
-            ->add('AgreeTerms', CheckboxType::class, [
-                'label'    => 'Cocher si vous acceptez les conditions générale d\'utilisation?',
+            ->add('Message', TextareaType::class)
+            ->add('_', CheckboxType::class, [
                 'required' => true,
             ])
-            ->add('Message', TextareaType::class)
         ;
     }
 
