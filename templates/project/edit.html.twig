@@ -12,7 +12,7 @@
                             <div class="card-body mx-4 text-center">
                                 {{ include('project/_form.html.twig', {'button_label': 'Update'}) }}
                                 {{ include('project/_delete_form.html.twig') }}
-                                <a class="btn btn-dark btn-sm" href="{{ path('project_index') }}">Retour à la liste</a>
+                                <a class="btn btn-dark btn-sm" href="{{ path('easyadmin', {entity: 'Projects', action: 'list'}) }}">Retour à la liste</a>
                              </div>
                 </div>
             </div>
