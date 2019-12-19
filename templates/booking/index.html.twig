@@ -10,24 +10,30 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Title</th>
                 <th>BeginAt</th>
                 <th>EndAt</th>
-                <th>Title</th>
-                <th>actions</th>
+                
+                <th>Description</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Actions</th>
+            {% endif %}
             </tr>
         </thead>
         <tbody>
         {% for booking in bookings %}
             <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.title }}</td>
+                <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ booking.endAt ? booking.endAt|date('d-m-Y H:i:s') : '' }}</td>
+                
+                <td>{{ booking.description }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>
                     <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
                 </td>
+            {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -36,6 +42,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('booking_new') }}">Create new</a>
+{% endif %}
 {% endblock %}

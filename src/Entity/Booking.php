@@ -235,6 +235,7 @@ class Booking {
 		return $this;
 	}
 
-
-
+	public function __toString() {
+		return $this->getTitle() . ' du ' . date_format($this->getBeginAt(), "Y-m-d\TH:i:s");
+	}
 }

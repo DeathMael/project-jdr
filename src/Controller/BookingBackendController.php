@@ -236,6 +236,9 @@ class BookingBackendController extends EasyAdminController {
 			$easyadmin = $this->request->attributes->get('easyadmin');
 			$entity = $easyadmin['item'];
 
+			$service = CalendarService::service();
+			$service->events->delete('primary', $entity->getGoogleid());
+
 			$this->dispatch(EasyAdminEvents::PRE_REMOVE, ['entity' => $entity]);
 			if ($entity instanceof Booking) {
 				if (count($entity->getUsers()) > 0) {
@@ -256,9 +259,6 @@ class BookingBackendController extends EasyAdminController {
 			$this->addFlash('success', 'L\'évènement ' . $entity->getTitle() . ' a été supprimé avec succès !');
 			$this->dispatch(EasyAdminEvents::POST_REMOVE, ['entity' => $entity]);
 		}
-
-		$service = CalendarService::service();
-		$service->events->delete('primary', $entity->getGoogleid());
 
 		$this->dispatch(EasyAdminEvents::POST_DELETE);
 
@@ -343,4 +343,5 @@ class BookingBackendController extends EasyAdminController {
 
 		$this->em->flush();
 	}
+
 }

@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('booking_new') }}">Créer un nouvel évènement</a>
+    {% endif %}
     <a href="{{ path('easyadmin', {entity: 'Booking', action: 'new'}) }}">Créer un nouvel évènement</a>
 
     <div class="container"><div id="calendar-holder"></div></div>
@@ -44,7 +47,7 @@
                 ],
                 customButtons: {
                     sync: {
-                        text: 'sync',
+                        text: 'syncroniser',
                         click: function() {
                             window.location.replace("/booking/sync");
                         }

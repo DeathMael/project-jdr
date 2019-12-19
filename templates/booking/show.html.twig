@@ -8,6 +8,26 @@
         <!-- Grid row -->
 
         <div class="col-md-6 offset-md-3">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Title</th>
+                <td>{{ booking.title }}</td>
+            </tr>
+            <tr>
+                <th>BeginAt</th>
+                <td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndAt</th>
+                <td>{{ booking.endAt ? booking.endAt|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ booking.description }}</td>
+            </tr>
+        </tbody>
+    </table>
 
             <div class="card text-white text-center mt-5">
                     <h1>Événements</h1>
@@ -38,6 +58,8 @@
                         </table>
 
                         <a class="btn btn-dark" href="{{ path('easyadmin', {entity: 'Booking', action: 'list'}) }}">Retour à la liste</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
 
                         <a class="btn btn-dark" href="{{ path('easyadmin', {entity: 'Booking', action: 'edit', id: (booking.id)}) }}">Modifier</a>
 
@@ -47,4 +69,8 @@
         </div>
     </div>
 </div>
+
+    {{ include('booking/_delete_form.html.twig') }}
+
+    {% endif %}
 {% endblock %}

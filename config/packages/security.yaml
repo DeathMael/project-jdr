@@ -42,11 +42,12 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/booking, role: ROLE_ADMIN }
-       
-        
-
-
-
-
+        - { path: ^/user, role: ROLE_ADMIN }
+        - { path: ^/booking/calendar, role: ROLE_USER }
+        - { path: ^/booking/new, role: ROLE_ADMIN }
+        - { path: ^/booking/edit, role: ROLE_ADMIN }
+        - { path: ^/booking/show, role: ROLE_USER }
+        - { path: ^/booking/, role: ROLE_USER }
+        - { path: ^/project/edit, role: ROLE_ADMIN }
+        - { path: ^/project/show, role: ROLE_ADMIN }
         - { path: ^/project/new, role: ROLE_ADMIN }
