@@ -21,7 +21,7 @@ class ContactController extends AbstractController
 
             $message = (new \Swift_Message('Nouvelle demande d\'inscription de ' . $contactFormData['Nom'] . ' ' . $contactFormData['Prenom']))
                 ->setFrom($contactFormData['Email'])
-                ->setTo('testeur21800@gmail.com')
+                ->setTo('taliesincollectif@gmail.com')
                 ->setBody(
                     $contactFormData['Message'] . '
             mail de l\'expéditeur: ' . $contactFormData['Email'],
@@ -53,7 +53,7 @@ class ContactController extends AbstractController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            "secret" => "6LdrFsYUAAAAAIKeg4RP81eVg5BBkIm48oXCBEY4", "response" => $recaptcha));
+            "secret" => "6Ld9gcgUAAAAADfDNxlg1SOmTz5i48Hwa3v7qgXl", "response" => $recaptcha));
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response);
