@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153986494-1"></script>
@@ -12,6 +12,7 @@
     </script>
 
     <meta charset="UTF-8">
+    <meta name="description" content="Bienvenue sur le site de l'association de Jeux de Rôle, Collectif Taliesin. Venez découvrir nos projets ainsi que notre équipe.">
     <title>{% block title %}Collectif Taliesin{% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -20,11 +21,10 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet" type="text/css"/>
+
     {% block stylesheets %}
         <style>
             span {color: #46ED58;}
-            .lienF {color: #46ED58;
-                text-decoration: none;}
 
         </style>
     {% endblock %}
@@ -118,6 +118,8 @@
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p class="text-white"><a>CGU</a></p>
                 <p class="text-white"><a href="{{ path('project_index') }}">Projet Odyssey</a></p>
+                <p class="text-white"><a href="{{ path('equipe_index') }}">L'Équipe</a></p>
+
                 <p class="text-white"><a href="{{ path('contact') }}">Nous Rejoindre</a></p>
 
             </div>
