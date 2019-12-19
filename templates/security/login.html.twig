@@ -4,7 +4,12 @@
 
 {% block stylesheets %}
     <style>
-     
+        body {background-image: url({{ asset('media/home.jpg') }});
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
         body {background-image: url({{ asset('media/home.jpg') }});
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -13,16 +18,18 @@
         }
 
         .card{background:rgba(33,33,33,0.7);
-            border-radius: 25px;}
+            border-radius: 25px;
+            padding-bottom: 7.5vh;
+            padding-top: 7.5vh}
 
 
 
-  
     </style>
 {% endblock %}
 
 {% block body %}
-        <div class="container mb-5 mt-5">
+<main>
+        <div class="container mb-5 mt-5 ">
 
         <div class="row">
         <!-- Grid row -->
@@ -38,20 +45,20 @@
                     {% endif %}
 
                     {% if app.user %}
-                    <div class="mb-5">
+                    <div class="mb-5 ">
                         Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
                     </div>
                     {% endif %}
 
 
-        <h1 class="h3 mb-5 font-weight-normal">Se connecter</h1>
-        <label for="inputUsername">Pseudo</label>
-        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-4" required autofocus>
-        <label for="inputPassword">Mot de passe</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
-        <p class="mt-4"><a id="link" href="{{ path('fos_user_resetting_request') }}" >Mot de passe oublié</a></p>
+                    <h1 class="h3 mb-5 font-weight-normal">Se connecter</h1>
+                    <label for="inputUsername">Pseudo</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-4" required autofocus>
+                    <label for="inputPassword">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control mb-4" required>
+                    <p class="mt-4"><a id="link" href="{{ path('fos_user_resetting_request') }}" >Mot de passe oublié</a></p>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -72,5 +79,8 @@
         </div>
         </div>
         </div>
+
+
+</main>
 
 {% endblock %}
