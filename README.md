@@ -15,7 +15,8 @@
 * Charte graphique: design simple, épuré et moderne inspiré du site existant.
 
 ## 3. Construction
-* Développement de l’application, module par module: Programmation Orientée Objet (PHP), CRUD.
+* HTML/CSS et JavaScript pour la partie Front-End.
+* Programmation Orientée Objet avec Symfony (en PHP), CRUD.
 * Language SQL (Base de Donnée) et YAML (configuration de Symfony).
 * Utilisation de bundle propre à Symfony et gestion de compte utilisateur.
 * Back-Office (ajout, configuration et personnalisation d'une interface d'administration pour les administrateurs du site, notifications).
